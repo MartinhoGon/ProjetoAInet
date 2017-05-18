@@ -14,10 +14,12 @@
 Route::get('/requests', 'RequestController@showRequests')->name('requests.showRequests');
 
 Route::get('requests/{requests}/edit', 'RequestController@edit')->name('requests.edit');
-
 Route::put('requests/{requests}/edit', 'RequestController@update')->name('requests.update');
 
 Route::delete('requests/{requests}', 'RequestController@destroy')->name('requests.destroy');
+
+Route::get('requests/create', 'RequestController@create')->name('requests.create');
+Route::post('requests/create', 'RequestController@store')->name('requests.store');
 
 
 //-----------users----------------

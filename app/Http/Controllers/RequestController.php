@@ -31,6 +31,36 @@ class RequestController extends Controller
             ->with('success', 'Request saved successfully');
     }
 
+    public function destroy(Request $requests)
+    {
+        $this->authorize('delete', $requests);
+
+        $requests->delete();
+
+        return redirect()
+            ->route('requests.showRequests')
+            ->with('success', 'Request deleted successfully');
+    }
+
+    public function create()
+    {
+        $this->authorize('create', Request::class);
+        $requests = new Request();
+        return view('requests.add', compact('requests'));
+    }
+
+    public function store(StoreUserRequest $requests)
+    {
+        $this->authorize('create', Request::class);
+        $requests = new Request;
+        $requests->fill($requests->all());
+        $requests->save();
+
+        return redirect()
+            ->route('requests.showRequests')
+            ->with('success', 'Request added successfully');
+    }
+
 
 
 }
