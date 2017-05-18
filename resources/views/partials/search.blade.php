@@ -12,7 +12,6 @@
 			           		 @foreach ($departments as $dep)
                     			 <option value=" {{$dep->id}}"> {{$dep->name}} </option>
              				@endforeach
-			            	
 			            </li>
 			        </ul>
 			</div>

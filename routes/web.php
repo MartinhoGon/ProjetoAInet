@@ -35,9 +35,10 @@ Route::get('/listUsers', 'UserController@showUsers')->name('users.showUsers');
 Route::get('/department', 'DepartmentController@showDepartment')->name('department.showDepartment');
 
 
-
-
 Auth::routes();
+
+
+Route::get('/home', 'DepartmentController@showDepartments');
 
 /*Route::get('/home', 'HomeController@index')->name('home');
 
