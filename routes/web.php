@@ -15,6 +15,8 @@ Route::get('/requests', 'RequestController@showRequests')->name('users.index');
 
 Route::get('/requests', 'RequestController@showUsers');
 
+Route::get('/home', 'DepartmentController@showDepartments');
+
 
 Route::get('/listUsers', 'UserController@showUsers');
 
