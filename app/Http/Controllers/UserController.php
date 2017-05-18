@@ -12,4 +12,5 @@ class UserController extends Controller
     	$users = User::all();
     	return view('users.listAll_Users',compact('users'));
     }
+    //Teste3
 }
