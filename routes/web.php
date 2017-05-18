@@ -35,6 +35,8 @@ Route::get('/department', 'DepartmentController@showDepartment')->name('departme
 
 Route::get('/home', 'DepartmentController@showDepartments');
 
+Route::get('/home', 'DepartmentController@showDepartments');
+
 
 
 Auth::routes();
