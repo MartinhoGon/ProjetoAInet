@@ -17,7 +17,12 @@ Route::get('requests/{requests}/edit', 'RequestController@edit')->name('requests
 
 Route::put('requests/{requests}/edit', 'RequestController@update')->name('requests.update');
 
+<<<<<<< Updated upstream
 Route::delete('$requests/{requests}', 'RequestController@destroy')->name('requests.destroy');
+=======
+Route::get('/home', 'DepartmentController@showDepartments');
+
+>>>>>>> Stashed changes
 
 //-----------users----------------
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit');
