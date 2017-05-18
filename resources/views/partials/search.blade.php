@@ -12,7 +12,7 @@
 			           		 @foreach ($departments as $dep)
                     			 <option value=" {{$dep->id}}"> {{$dep->name}} </option>
              				@endforeach
-			            	<a   class="letra" href="#">IR A BD BUSCAR TD</a>
+			            	
 			            </li>
 			        </ul>
 			</div>
