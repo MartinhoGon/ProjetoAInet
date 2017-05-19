@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Department;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -52,6 +53,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+
         ]);
     }
 
@@ -67,7 +69,13 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'department_id' => 1,
+            'department_id' => $data['departments'],
         ]);
+    }
+
+    public function showDepartments ()
+    {
+        $departments = Department::all();
+        return view('auth.register')->with('departments');  
     }
 }

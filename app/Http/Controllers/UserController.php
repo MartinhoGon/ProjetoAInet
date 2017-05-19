@@ -8,6 +8,8 @@ use App\Department;
 
 class UserController extends Controller
 {
+    protected $fillable = ['name','email', 'password','department_id']
+
     public function showUsers()
     {
     	$users = User::all();
