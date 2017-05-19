@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Request as Pedido;
+use App\Requests;
 use Illuminate\Http\Request;
+use App\Department;
 
 
 class RequestController extends Controller
 {
     public function showRequests()
     {
-    	$requests = Pedido::all()->take(5);
-    	return view('showPedidos',compact('requests'));
+    	$requests = Requests::all();
+    	$departments = Department::all();
+    	return view('request.resquestList',compact('requests', 'departments'));
     }
 
     public function edit(Request $requests)
     {
         $this->authorize('update', $requests);
-        return view('requests.edit', compact('requests'));
+        return view('requests.add-edit_Request', compact('requests'));
     }
 
     public function update(Request $requests)
@@ -46,7 +48,7 @@ class RequestController extends Controller
     {
         $this->authorize('create', Request::class);
         $requests = new Request();
-        return view('requests.add', compact('requests'));
+        return view('requests.add-edit_Request', compact('requests'));
     }
 
     public function store(StoreUserRequest $requests)

@@ -40,9 +40,11 @@ Route::get('/department', 'DepartmentController@showDepartment')->name('departme
 Auth::routes();
 
 
-Route::get('/home', 'DepartmentController@showDepartments');
+Route::get('/home', 'HomeController@index')->name('home');
 
-/*Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'DepartmentController@showDepartments');
+
+/*
 
 Route::get('/', function () {
     return redirect()->route('users.showUsers');
