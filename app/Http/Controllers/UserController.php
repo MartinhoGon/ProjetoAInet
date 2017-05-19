@@ -39,24 +39,25 @@ class UserController extends Controller
     }
 
 
-    public function create()
-    {
-        $this->authorize('create', Request::class);
-        $users = new User();
-        return view('users.add', compact('users'));
-    }
+    //public function create()
+    //{
+    //     $this->authorize('create', Request::class);
+    //     $users = new User();
+    //     return view('users.add', compact('users'));
+    // }
+    
 
-    public function store(StoreUserRequest $users)
-    {
-        $this->authorize('create', User::class);
-        $users = new User;
-        $users->fill($request->all());
-        $users->password = Hash::make($request->password);
+    // public function store(StoreUserRequest $users)
+    // {
+    //     $this->authorize('create', User::class);
+    //     $users = new User;
+    //     $users->fill($request->all());
+    //     $users->password = Hash::make($request->password);
 
-        $users->save();
+    //     $users->save();
 
-        return redirect()
-            ->route('users.showUsers')
-            ->with('success', 'User added successfully');
-    }
+    //     return redirect()
+    //         ->route('users.showUsers')
+    //         ->with('success', 'User added successfully');
+    // }
 }

@@ -26,15 +26,15 @@ Route::post('requests/create', 'RequestController@store')->name('requests.store'
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit');
 Route::put('users/{user}/edit', 'UserController@update')->name('users.update');
 
-Route::get('users/create', 'UserController@create')->name('users.create');
-Route::post('users/create', 'UserController@store')->name('users.store');
+// Route::get('users/create', 'UserController@create')->name('users.create');
+// Route::post('users/create', 'UserController@store')->name('users.store');
 
 Route::get('/listUsers', 'UserController@showUsers')->name('users.showUsers');
 
 
 //--------------department----------
 
-Route::get('/department', 'DepartmentController@showDepartment')->name('department.showDepartment');
+Route::get('/department', 'DepartmentController@showDepartments')->name('department.showDepartments');
 
 
 Auth::routes();
