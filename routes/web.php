@@ -44,9 +44,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/home', 'DepartmentController@showDepartments');
 
-/*
-
 Route::get('/', function () {
     return redirect()->route('users.showUsers');
-});*/
+});
+
+
+
+//----------Auth--------------
+
 

@@ -76,6 +76,6 @@ class RegisterController extends Controller
     public function showDepartments ()
     {
         $departments = Department::all();
-        return view('auth.register')->with('departments');  
+        return view('auth.register')->with('departments',$departments);  
     }
 }

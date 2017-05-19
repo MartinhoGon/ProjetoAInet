@@ -8,7 +8,7 @@ use App\Department;
 
 class UserController extends Controller
 {
-    protected $fillable = ['name','email', 'password','department_id']
+    protected $fillable = ['name','email', 'password','department_id'];
 
     public function showUsers()
     {
@@ -45,7 +45,7 @@ class UserController extends Controller
     //     $users = new User();
     //     return view('users.add', compact('users'));
     // }
-    
+
 
     // public function store(StoreUserRequest $users)
     // {
