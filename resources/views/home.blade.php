@@ -27,7 +27,8 @@
             @foreach ($departments as $dep)
                      <option value=" {{$dep->id}}"> {{$dep->name}} </option>
              @endforeach
-                <?= $lava->render('DonutChart', 'Coloracao', 'chart-div') ?>
+                <div id="chart-div"></div>
+                @donutchart('Coloracao', 'chart-div')
 
 
 
