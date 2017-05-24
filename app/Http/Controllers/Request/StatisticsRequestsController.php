@@ -25,7 +25,7 @@ class StatisticsRequestsController extends Controller
         //}
 
         $lava = new Lavacharts; 
-        $round = $lava->DataTable();
+        $round = Lava::DataTable();
 
         $round->addStringColumn('Percentagem')
         ->addNumberColumn('Percent')

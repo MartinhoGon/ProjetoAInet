@@ -27,13 +27,8 @@
             @foreach ($departments as $dep)
                      <option value=" {{$dep->id}}"> {{$dep->name}} </option>
              @endforeach
-                <div id="chart-div"></div>
-                @donutchart('Coloracao', 'chart-div')
-
-
-
-
-
+                {{-- <div id="chart-div"></div>
+                @donutchart('Coloracao', 'chart-div') --}}
 
 
             </select>
