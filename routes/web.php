@@ -32,6 +32,8 @@ Route::put('users/{user}/edit', 'UserController@update')->name('users.update');
 Route::get('/listUsers', 'UserController@showUsers')->name('users.showUsers');
 
 
+
+
 //--------------department----------
 
 Route::get('/department', 'DepartmentController@showDepartments')->name('department.showDepartments');
@@ -40,16 +42,17 @@ Route::get('/department', 'DepartmentController@showDepartments')->name('departm
 Auth::routes();
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/home', 'DepartmentController@showDepartments');
+// //Route::get('/home', 'DepartmentController@showDepartments');
 
-Route::get('/', function () {
-    return redirect()->route('home');
-});
+// Route::get('/', function () {
+//     return redirect()->route('home');
+// });
 
 
 
-//----------Auth--------------
+//----------Statistics home-------------
 
+Route::get('/home','StatisticsRequestsController@showStatistics') ->name('home');
 
