@@ -59,10 +59,10 @@
             <div>
                 <ul class="nav nav-tabs">
                     <li>
-                        <a class="letra" href="#">Home</a>
+                        <a class="letra" href="{{ route('home') }}">Home</a>
                     </li>
                     <li>
-                        <a class="letra" href="#">...</a>
+                        <a class="letra" href="#">Dashboard</a>
                     </li>
                     <li>
                         <a class="letra" href="#">...</a>
