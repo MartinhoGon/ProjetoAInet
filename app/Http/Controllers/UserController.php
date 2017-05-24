@@ -14,7 +14,7 @@ class UserController extends Controller
     {
     	$users = User::all();
     	$departments = Department::all();
-    	return view('users.listAll_Users',compact('users', 'departments'));
+    	return view('home',compact('users', 'departments'));
     }
 
     public function edit(Request $users)

@@ -1,18 +1,3 @@
-<!-- <!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Untitled</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="author" href="humans.txt">
-    </head>
-    <body>
-        <header>Olá projeto</header>
-    </body>
-</html> -->
-
 @extends('master')
 
 @section('pageName', 'Papelaria ESTG')
@@ -35,13 +20,21 @@
             <a href="{{ url('/editAccount') }}">Editar conta</a>
         </div>
         <div class="fromDep">
-             <!-- escolher gepartamento para estatistica -->
+             <!-- escolher departamento para estatistica -->
              <text> As nossas estatísticas </text>
             <label for="inputType">Seleciona um departamento para saber mais</label>
             <select name="type" id="inputType" class="form-control">
             @foreach ($departments as $dep)
                      <option value=" {{$dep->id}}"> {{$dep->name}} </option>
              @endforeach
+                <?= $lava->render('DonutChart', 'Coloracao', 'chart-div') ?>
+
+
+
+
+
+
+
             </select>
          </div>
          <div class=link>
