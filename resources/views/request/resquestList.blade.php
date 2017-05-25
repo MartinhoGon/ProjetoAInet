@@ -16,7 +16,7 @@
             <th>Nome do funcionário</th>
             <th>Departamento do funcionário</th>
             <th>Estado</th>
-            <th>Tipo de Impressão</th>
+            <th>Tipo de folha</th>
             <th>Data do pedido</th>
         </tr>
     </thead>
