@@ -14,10 +14,16 @@ class UserController extends Controller
 
     public function showUsers()
     {
-        $users = User::paginate(10);
+        $users = User::paginate(20);
     	
     	$departments = Department::all();
     	return view('users.listUsers',compact('users', 'departments'));
+    }
+
+    public function showUser(Request $users)
+    {
+
+        return view('users.viewOne_Users', compact('users'));
     }
 
     public function edit(Request $users)
