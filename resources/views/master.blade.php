@@ -56,20 +56,20 @@
                             </li>
                         @endif
                     </ul>
-                </div>
-                <div>
-                    <ul class="nav nav-tabs">
-                        <li>
-                            <a class="letra" href="{{ route('home') }}">Home</a>
-                        </li>
-                        <li>
-                            <a class="letra" href="#">Dashboard</a>
-                        </li>
-                        <li>
-                            <a class="letra" href="{{ route('requests.showRequests') }}">Pedidos</a>
-                        </li>
-                    </ul>
-                </div>
+            </div>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a class="letra" href="{{route('home')}}">Home</a>
+                    </li>
+                    <li>
+                        <a class="letra" href="#">...</a>
+                    </li>
+                    <li>
+                        <a class="letra" href="{{route('requests.showRequests')}}">Pedidos</a>
+                    </li>
+                </ul>
+            </div>
             </div>
         <div>
             <h2 class="letraTitulo">@yield('´pageName')</h2>
