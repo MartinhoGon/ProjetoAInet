@@ -13,6 +13,7 @@
 //---------Request-----------------
 Route::get('/requests', 'RequestController@showRequests')->name('requests.showRequests');
 
+
 Route::get('requests/{requests}/edit', 'RequestController@edit')->name('requests.edit');
 Route::put('requests/{requests}/edit', 'RequestController@update')->name('requests.update');
 
@@ -25,6 +26,7 @@ Route::post('requests/create', 'RequestController@store')->name('requests.store'
 //-----------users----------------
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit');
 Route::put('users/{user}/edit', 'UserController@update')->name('users.update');
+Route::get('/users/{user}', 'UserController@showUser')->name('users.showUser');
 
 // Route::get('users/create', 'UserController@create')->name('users.create');
 // Route::post('users/create', 'UserController@store')->name('users.store');

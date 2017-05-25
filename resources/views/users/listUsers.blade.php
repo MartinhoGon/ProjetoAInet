@@ -21,7 +21,12 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
-            <td> <a class="btn" href=""> Ver perfil </a> </td>
+            <td> 
+            <a class="btn" href="{{route('users.showUser', $user)}}"> Ver perfil </a> 
+            <a class="btn btn-xs btn-primary" href="">Edit</a>
+            <a class="btn btn-xs btn-danger" href="">Block</a>
+          
+            </td>
         </tr>
         @endforeach
 </table>

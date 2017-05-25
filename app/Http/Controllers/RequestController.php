@@ -11,7 +11,7 @@ class RequestController extends Controller
 {
     public function showRequests()
     {
-    	$requests = Requests::paginate(10);
+    	$requests = Requests::paginate(20);
     	$departments = Department::all();
     	return view('request.resquestList',compact('requests', 'departments'));
     }

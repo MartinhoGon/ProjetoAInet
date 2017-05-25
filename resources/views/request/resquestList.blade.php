@@ -5,7 +5,9 @@
 @section('content')
 
 @include('partials.searchDetail')
-
+<div>
+    <a class="btn btn-primary" href="">Add request</a>
+</div>
  <table class="table table-striped letra">
     <thead>
         <tr>
@@ -28,6 +30,14 @@
             <td>{{$req->status}}</td>
             <td></td>
             <td>{{$req->created_at}}</td>
+            <td>
+                <a class="btn btn-xs btn-primary" href="">Edit</a>
+                <a action="{{route('requests.destroy', $requests)}}" method="POST" role="form" class="inline"
+                    {{method_field('delete')}}
+                    {{csrf_field()}}
+                    <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                </a>
+            </td>
         </tr>
         @endforeach
 </table>
