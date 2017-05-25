@@ -2,7 +2,9 @@
 
 @section('pageName', 'Papelaria ESTG')
 
+
 @section('content')
+
 
         <div class="fromDep">
              <!-- escolher departamento para estatistica -->
@@ -16,7 +18,8 @@
                 <div id="poll_div"></div>
                 @barchart('Number', 'poll_div')
             <!--média diária de impressões do corrente mês-->
-                <text><br>Média diária de impressões neste mês: </text> 
-                <!--showStatisticsAVG()-->
+                <text><br>Média diária de impressões neste mês: 
+                    <span>{{$countTotalUntilToday}}</span> 
+                </text> 
 
 @endsection
