@@ -6,35 +6,38 @@
 
 @foreach ($users as $user)
 
-        <div class="auth">
-            <label for="text" class="col-md-4 control-label">Nome:</label>
-            <label for="text" class="col-md-4 control-label">*buede cenas a aparecer que vamos buscar*</label>
-        </div>
-        <div class="auth">
-            <label for="text" class="col-md-4 control-label">Nome:</label>
-            <img class="img-circle" src="http://tudosobrecachorros.com.br/wp-content/uploads/precos-de-cachorro.png">
-        </div>
-        <div class="auth">
-            <label for="text" class="col-md-4 control-label">Email:</label>
-            <label for="text" class="col-md-4 control-label">*buede cenas a aparecer que vamos buscar*</label>
-        </div>
-        <div class="auth">
-            <label for="text" class="col-md-4 control-label">Telemóvel:</label>
-            <label for="text" class="col-md-4 control-label">*buede cenas a aparecer que vamos buscar*</label>
-        </div>
-        <div class="auth">
-            <label for="text" class="col-md-4 control-label">Departamento:</label>
-            <label for="text" class="col-md-4 control-label">*buede cenas a aparecer que vamos buscar*</label>
-        </div>
+        <h1>
+            {{$user->name}}
+        </h1>
+        <table>  
+    <th>
+        @if(is_null($user->profile_photo))
+            <img src="{{ asset('img/default.jpg'.$user->profile_photo)}}">
+        @else
+            <img src="{{ asset('storage/profiles/'.$user->profile_photo) }}">
+        @endif
+      </th>
+      <th>
+            <p><b>Email:</b>
+           {{$user->email}}</p>
+       
+            <p><b>Telemóvel:</b>
+            {{$user->phone}}</p>
         
-        <div class="auth">
-            <label for="text" class="col-md-4 control-label">Texto de apresentação:</label>
-            <label for="text" class="col-md-4 control-label">*buede cenas a aparecer que vamos buscar*</label>
-        </div>
-        <div class="auth">
-            <label for="text" class="col-md-4 control-label">Outras redes sociais:</label>
-            <label for="text" class="col-md-4 control-label">*buede cenas a aparecer que vamos buscar*</label>
-        </div>
+           <p><b> Departamento:</b>
+            {{$user->department->name}}
+           </p>
+
+    
+            <p><b>Texto de apresentação:</b>
+            {{$user->presentation}}</p>
+        
+            <p><b>Outras redes sociais:</b>
+            <a href="{{$user->profile_url}}">{{$user->profile_url}}</a>
+      </p>
+      </th>
+
+</table>
 
 @endforeach
 

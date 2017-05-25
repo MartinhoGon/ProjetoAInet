@@ -23,7 +23,7 @@
             <td>{{$user->phone}}</td>
             <td> 
             <a class="btn" href="{{route('users.showUser', $user)}}"> Ver perfil </a> 
-            <a class="btn btn-xs btn-primary" href="">Edit</a>
+            <a class="btn btn-xs btn-primary" href="{{route('users.edit', $user)}}">Edit</a>
             <a class="btn btn-xs btn-danger" href="">Block</a>
           
             </td>

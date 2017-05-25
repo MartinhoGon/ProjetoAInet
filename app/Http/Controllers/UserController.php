@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function showUser(Request $users)
     {
-
+        $users = DB::table('users')->where('id', $users->id)->get();
         return view('users.viewOne_Users', compact('users'));
     }
 

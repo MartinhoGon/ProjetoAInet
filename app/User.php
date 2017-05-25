@@ -23,7 +23,7 @@ class User extends Authenticatable
 
     public function department() 
     {
-    	return $this->belongsTo('App\Request','department_id','id');
+    	return $this->belongsTo( 'App\Department' , 'department_id', 'id');
     }
 
 
