@@ -7,6 +7,8 @@ use App\Department;
 use App\Requests as Pedido;
 use Khill\Lavacharts\Lavacharts;
 use Lava;
+use Carbon\Carbon;
+use DB;
 
 class StatisticsRequestsController extends Controller
 {
@@ -20,18 +22,20 @@ class StatisticsRequestsController extends Controller
         $this -> showStatisticsTotal();
 
         //média diária de impressões do corrente mês
-        $this -> showStatisticsAVG();
-        
-        return view('home');
+       $countTotalUntilToday = $this -> showStatisticsAVG();
 
+
+        return view('home', compact('countTotalUntilToday'));
     }
 
     //total impressoes P&B versus Cores
      public function showStatisticsColor(){
         //sql
-        $countBlack = Pedido::where('colored', 0)->count();
 
-        $countTotal = Pedido::count();
+       $countBlack = Pedido::where('status', 1)->where('colored', 0)->count();                                                   //HEYHEYHEY muito estranho dar 100%
+
+        
+        $countTotal = Pedido::where('status', 1)->count();
 
         $black=($countBlack/$countTotal)*100;
         $colored = 100-$black;
@@ -53,15 +57,10 @@ class StatisticsRequestsController extends Controller
     //total impressoes, de impressoes por departamento, de impressores no corrente dia
      public function showStatisticsTotal(){
 
-        $departments = Department::all();
-
         //sql
-        $countTotal = Pedido::count();
-        /*
-        $countTotalToday = Pedido::where('DATE(created_at)', CURDATE())->count();
-
-        
-         faltaODep: funcao recebe id do dep e retorna o total de impressoes do dep*/
+        $countTotal = Pedido::where('status', 1)->count();
+        $current_timestamp = Carbon::today();
+        $countTotalToday = Pedido::where('closed_date', '>=', $current_timestamp)->whereNotNull('closed_date')->count();                     
 
         //grafico
         $total = Lava::DataTable();
@@ -69,10 +68,13 @@ class StatisticsRequestsController extends Controller
         $total->addStringColumn('Total')
         ->addNumberColumn('Number')
         ->addRow(['Desde sempre', $countTotal])
-        ->addRow(['De hoje', 50]);
-        foreach ($departments as $dep)
-            $total->addRow([$dep->name, 160]);
+        ->addRow(['De hoje', $countTotalToday]); 
 
+        $totalPerDepartment = DB::select('select count(a.id) as total,d.id,d.name from requests a inner join users on users.id = a.owner_id inner join departments d where d.id = department_id and a.status=1 group by d.id');
+
+      foreach ($totalPerDepartment as $row)
+            $total->addRow([$row->name, $row->total]);                           
+    
         Lava::BarChart('Number', $total, [
         'title' => 'Total de impressões']);
 
@@ -80,7 +82,22 @@ class StatisticsRequestsController extends Controller
     }
 
     //média diária de impressões do corrente mês
-      public function showStatisticsAVG(){         
+      public function showStatisticsAVG(){  
+    //soma Impressoes deste mes e deste ano /diaDeHoje                                                                                                         
+
+        //sql
+       $current_timestamp = Carbon::today();
+       $initialMonthYear_timestamp = Carbon::createFromDate(null, null, 0);                                       //HEYHEYHEY timezone esta a ler errado
+       $dayOfToday = Carbon::now()->day;
+        
+        $countTotalUntilToday =  Pedido::where('status', 1)->where('created_at', '>=', $initialMonthYear_timestamp)->where('created_at', '<=', $current_timestamp)->count();
+
+        
+
+        $avg = $countTotalUntilToday/$dayOfToday;
+
+        return $avg;
 
       }
+
 }

@@ -11,9 +11,9 @@ class User extends Authenticatable
         'name', 'email', 'password', 'department_id'
     ];
 	//estabelcer as relações com a BD
-    public function request() 
+    public function requests() 
     {
-    	return $this->hasMany('App\Request','owner_id','id');
+    	return $this->hasMany('App\Requests','owner_id','id');
     }
 
     public function comment() 
