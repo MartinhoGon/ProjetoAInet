@@ -29,7 +29,8 @@
                 <ul class="nav nav-pills pull-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a class="letra" href="#">Contactos</a></li>
+    
+                            <li><a href="{{route('users.showUsers')}}">Contactos</a></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else

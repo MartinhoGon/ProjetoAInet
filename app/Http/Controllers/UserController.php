@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Department;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+
     protected $fillable = ['name','email', 'password','department_id'];
 
     public function showUsers()
     {
-    	$users = User::all();
+        $users = User::paginate(10);
+    	
     	$departments = Department::all();
     	return view('users.listUsers',compact('users', 'departments'));
     }

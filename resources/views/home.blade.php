@@ -4,12 +4,6 @@
 
 @section('content')
 
-<!DOCTYPE html>
-<html lang="{{ config('app.locale') }}"> <!-- declara a linguagem a usar -->
-    <head>
-        <meta charset="utf-8">
-    </head>    
- 
         <div class="fromDep">
              <!-- escolher departamento para estatistica -->
              <text> As nossas estatísticas </text>
@@ -20,11 +14,9 @@
 
             <!--total impressoes, de impressoes por departamento, de impressores no corrente dia-->
                 <div id="poll_div"></div>
-                @barchart('Total', 'poll_div')
+                @barchart('Number', 'poll_div')
             <!--média diária de impressões do corrente mês-->
                 <text><br>Média diária de impressões neste mês: </text> 
                 <!--showStatisticsAVG()-->
 
-    </body>
-</html>
 @endsection

@@ -26,5 +26,6 @@
         @endforeach
 </table>
 
+<div class="pagination"> {{$users->links()}}</div>
 
 @endsection
