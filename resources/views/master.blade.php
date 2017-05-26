@@ -77,7 +77,7 @@
         </div>
         @yield('content')
         <div class="container">
-            <div class="footer footer2 letra">
+            <div class="footer footer2 footer3 letra">
                 <p>Projeto AINET 2016/2017</p>
                 <p>Martinho Gonçalves | Rute Leite Ferreira | Patricia Pedrosa </p>
             </div>

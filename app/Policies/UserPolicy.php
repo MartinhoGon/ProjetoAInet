@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policy;
 
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -9,14 +9,6 @@ class UserPolicy
 {
 
 	use HandlesAuthorization;
-
-    public function before($user, $ability)
-    {
-        if ($user->isAdmin()) {
-            return true;
-        }
-    }
-
     /**
      * Determine whether the user can create users.
      *
@@ -37,7 +29,7 @@ class UserPolicy
      */
     public function update(User $authUser, User $user)
     {
-        return $authUser->isPublisher() || $authUser->id == $user->id;
+        return $authUser->id == $user->id;
     }
 
     /**

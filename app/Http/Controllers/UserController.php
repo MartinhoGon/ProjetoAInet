@@ -46,6 +46,14 @@ class UserController extends Controller
             ->with('success', 'User saved successfully');
     }
 
+    public function orderName()
+    {
+        $users = User::paginate(20);
+        
+        $departments = Department::all();
+        return view('users.listUsers',compact('users', 'departments'));
+    }
+
 
     //public function create()
     //{
