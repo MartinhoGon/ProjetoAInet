@@ -20,6 +20,7 @@ class UserController extends Controller
     	return view('users.listUsers',compact('users', 'departments'));
     }
 
+<<<<<<< HEAD
     public function showContacts()
     {
         $users = User::paginate(20);
@@ -29,20 +30,22 @@ class UserController extends Controller
     }
 
     public function showUser(Request $users)
+=======
+    public function showUser(User $user)
+>>>>>>> 2324cf2cee357ae904037838cb71ec7941e23b93
     {
-        $users = DB::table('users')->where('id', $users->id)->get();
-        return view('users.viewOne_Users', compact('users'));
+        return view('users.viewOne_Users', compact('user'));
     }
 
-    public function edit(Request $users)
+    public function edit(Request $user)
     {
-        $this->authorize('update', $users);
-        return view('users.edit', compact('users'));
+        //$this->authorize('update', $user);
+        return view('users.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, User $users)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $this->authorize('update', $users);
+        //$this->authorize('update', $users);
         $except = ['password'];
         // if (!$user->isAdmin()) {
         //     $except[] = 'type';

@@ -38,15 +38,16 @@
                             </div>
                         </div>
 
-                        {{-- <div class="form-group">
-                            <label for="departamento" class="control-label col-md-4">Departamento</label>
-                            <select name="departamento" id="departamento" class="col-md-6">
-                            <option disabled selected> -- selecione um departamento -- </option>
-                            @foreach ($departments as $department)
-                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                @endforeach
-                            </select>
-                        </div> --}}
+                        <!--<div class="form-group">
+                            <label for="department" class="col-md-4 control-label">Department</label>
+                            <div class="col-md-6">
+                                <select name="Departamento" id="departamento" class="form-control">
+                                    <option disabled selected> -- select an option -- </option>
+                                    <option value=showDepartments()</option>
+                                </select>
+                            </div>
+                        </div>-->
+
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
