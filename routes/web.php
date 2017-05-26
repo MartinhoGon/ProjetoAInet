@@ -26,7 +26,7 @@ Route::post('requests/create', 'RequestController@store')->name('requests.store'
 //-----------users----------------
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit');
 Route::post('users/{user}/edit', 'UserController@update')->name('users.update');
-Route::get('/users/{user}', 'UserController@showUser')->name('users.showUser');
+Route::get('/users/{user}', 'UserController@showUserPerfil')->name('users.showUser');
 
 // Route::get('users/create', 'UserController@create')->name('users.create');
 // Route::post('users/create', 'UserController@store')->name('users.store');

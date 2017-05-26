@@ -20,7 +20,6 @@ class UserController extends Controller
     	return view('users.listUsers',compact('users', 'departments'));
     }
 
-<<<<<<< HEAD
     public function showContacts()
     {
         $users = User::paginate(20);
@@ -29,10 +28,9 @@ class UserController extends Controller
         return view('users.showContacts',compact('users', 'departments'));
     }
 
-    public function showUser(Request $users)
-=======
-    public function showUser(User $user)
->>>>>>> 2324cf2cee357ae904037838cb71ec7941e23b93
+    //public function showUser(Request $users)
+
+    public function showUserPerfil(User $user)
     {
         return view('users.viewOne_Users', compact('user'));
     }
