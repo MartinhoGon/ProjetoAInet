@@ -51,10 +51,9 @@ class RequestController extends Controller
         //$this->authorize('create', Pedido::class);
         $requests = new Pedido();
         return view('request.add-edit_Request', compact('requests'));
-        //dd("create");
     }
 
-    public function store(StoreUserRequest $requests)
+    public function store(StorePedidoRequest $requests)
     {
         $this->authorize('create', Pedido::class);
         $requests = new Pedido;
