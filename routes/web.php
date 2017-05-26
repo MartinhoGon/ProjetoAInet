@@ -31,7 +31,7 @@ Route::get('/users/{user}', 'UserController@showUser')->name('users.showUser');
 // Route::get('users/create', 'UserController@create')->name('users.create');
 // Route::post('users/create', 'UserController@store')->name('users.store');
 
-Route::get('/listUsers', 'UserController@showUsers')->name('users.showUsers');
+Route::get('/contacts', 'UserController@showContacts')->name('users.showContacts');
 
 
 

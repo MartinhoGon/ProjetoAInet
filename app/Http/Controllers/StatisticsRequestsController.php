@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Department;
-use App\Requests as Pedido;
+use App\Request as Pedido;
 use Khill\Lavacharts\Lavacharts;
 use Lava;
 use Carbon\Carbon;

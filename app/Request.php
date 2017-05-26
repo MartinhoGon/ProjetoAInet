@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Requests extends Model
+class Request extends Model
 {
 	//Establecer relações com a BD
     public function user() 

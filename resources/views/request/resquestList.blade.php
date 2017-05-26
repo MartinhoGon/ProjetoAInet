@@ -6,7 +6,7 @@
 
 @include('partials.searchDetail')
 <div>
-    <a class="btn btn-primary" href="">Add request</a>
+    <a class="btn btn-primary" href="{{route('requests.create')}}">Add request</a>
 </div>
  <table class="table table-striped letra">
     <thead>
