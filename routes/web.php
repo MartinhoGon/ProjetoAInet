@@ -32,7 +32,7 @@ Route::get('/users/{user}', 'UserController@showUser')->name('users.showUser');
 // Route::post('users/create', 'UserController@store')->name('users.store');
 
 Route::get('/contacts', 'UserController@showContacts')->name('users.showContacts');
-
+Route::get('/listUsers', 'UserController@showUsers')->name('users.showUsers');
 
 
 

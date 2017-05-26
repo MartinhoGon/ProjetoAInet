@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Request as Pedido; 
 use Illuminate\Http\Request;
 use App\Department;
+use App\Http\Requests\StorePedidoRequest;
+use App\Http\Requests\UpdatePedidoRequest;
 
 
 class RequestController extends Controller
@@ -46,9 +48,10 @@ class RequestController extends Controller
 
     public function create()
     {
-        $this->authorize('create', Pedido::class);
+        //$this->authorize('create', Pedido::class);
         $requests = new Pedido();
-        return view('requests.add-edit_Request', compact('requests'));
+        return view('request.add-edit_Request', compact('requests'));
+        //dd("create");
     }
 
     public function store(StoreUserRequest $requests)
