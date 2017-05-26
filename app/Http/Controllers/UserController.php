@@ -20,7 +20,17 @@ class UserController extends Controller
     	return view('users.listUsers',compact('users', 'departments'));
     }
 
-    public function showUser(User $user)
+    public function showContacts()
+    {
+        $users = User::paginate(20);
+        
+        $departments = Department::all();
+        return view('users.showContacts',compact('users', 'departments'));
+    }
+
+    //public function showUser(Request $users)
+
+    public function showUserPerfil(User $user)
     {
         return view('users.viewOne_Users', compact('user'));
     }

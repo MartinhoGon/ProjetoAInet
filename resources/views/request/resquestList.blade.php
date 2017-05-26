@@ -6,8 +6,9 @@
 
 @include('partials.searchDetail')
 <div>
-    <a class="btn btn-primary" href="">Add request</a>
+    <a class="btn btn-primary" href="{{route('requests.create')}}">Add request</a>
 </div>
+@if(count($requests))
  <table class="table table-striped letra">
     <thead>
         <tr>
@@ -32,7 +33,7 @@
             <td>{{$req->created_at}}</td>
             <td>
                 <a class="btn btn-xs btn-primary" href="">Edit</a>
-                <a action="{{route('requests.destroy', $requests)}}" method="POST" role="form" class="inline"
+                <a action="{{route('requests.destroy', $requests)}}" method="POST" role="form" class="inline">
                     {{method_field('delete')}}
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-xs btn-danger">Delete</button>
@@ -41,7 +42,8 @@
         </tr>
         @endforeach
 </table>
-
 <div class="pagination"> {{$requests->links()}}</div>
-
+@else
+    <h2>No users found</h2>
+@endif
 @endsection
