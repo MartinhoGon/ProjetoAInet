@@ -43,6 +43,23 @@
         placeholder="Password" value="{{old('password', $user->password)}}"/>
 </div>
 
+<div class="form-group">
+    <label for="password-confirm">Confirm Password</label>
+    <input
+        type="password" class="form-control"
+        name="password-confirm" id="password-confirm"
+        placeholder="Password" value="{{old('password', $user->password)}}"/>
+</div>
+
+<div class="form-group">
+    <label for="name">Departamento</label>
+    <select class="form-control" name="department_id">                   
+        <option disabled selected> -- select an option -- </option>
+        @foreach ($departments as $dep)
+            <option value=" {{$dep->id}}"> {{$dep->name}} </option>
+        @endforeach
+    </select>
+</div>
 
 <div class="form-group">
     <label for="inputFoto">Foto</label>
@@ -53,11 +70,20 @@
 </div>
 
 <div class="form-group">
+    <label for="inputUrl">URL</label>
+    <input
+        type="url" class="form-control"
+        name="url" id="inputUrl"
+        placeholder="Url" value="{{old('profile_url', $user->profile_url)}}" />
+</div>
+
+<div class="form-group">
     <label for="inputPresentation">Presentation</label>
     <input
         type="text" class="form-control"
         name="presentation" id="inputPresentation"
-        placeholder="Presentation" value="{{old('presentation', $user->presentation)}}" />
+        placeholder="Presentation" rows="4"
+        value="{{old('presentation', $user->presentation)}}" />
 </div>
 
 

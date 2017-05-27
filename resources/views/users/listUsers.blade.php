@@ -22,9 +22,15 @@
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
             <td> 
-            <a class="btn" href="{{route('users.showUser', $user)}}"> Ver perfil </a> 
+            <a class="btn" href="{{route('users.showUserPerfil', $user)}}"> Ver perfil </a> 
             <a class="btn btn-xs btn-primary" href="{{route('users.edit', $user)}}">Edit</a>
-            <a class="btn btn-xs btn-danger" href="">Block</a>
+            @if($user->blocked == true)
+                <a class="btn btn-xs btn-success" href="{{route('users.unblock', ['id' =>$user->id])}}">Unblock</a>
+            @else
+                <a class="btn btn-xs btn-danger" href="{{route('users.block', ['id' =>$user->id])}}">Block</a>
+            @endif
+                
+            
           
             </td>
         </tr>

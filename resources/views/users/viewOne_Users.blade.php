@@ -4,10 +4,8 @@
 
 @section('content')
 
-        <h1>
-            {{$user->name}}
-        </h1>
-        <table>  
+<h1>{{$user->name}}</h1>
+<table>  
     <th>
         @if(is_null($user->profile_photo))
             <img class="img-circle" src="{{ asset('img/default.jpg'.$user->profile_photo)}}" height="200" width="200" style="box-shadow: 0px 0px 10px #888;">
@@ -36,7 +34,7 @@
             <p><b>Texto de apresentação:</b>
             {{$user->presentation}}</p>
          @endif
-         
+
           @if(is_null($user->profile_url))
        
        @else
@@ -44,10 +42,10 @@
             <a href="{{$user->profile_url}}">{{$user->profile_url}}</a>
       </p>
       @endif
-      </th>
+            </th>
 
 </table>
-
-
+<br />
+<a class="btn btn-primary" href="{{route('users.showUsers')}}"> Voltar </a> 
 
 @endsection

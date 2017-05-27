@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'department_id' => 'required|integer|exists:department_id',
 
         ]);
     }
@@ -69,18 +70,12 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-<<<<<<< HEAD
-            'department_id' => 1,  //$data['departments'],
-=======
-            'department_id' => 1, //$data['departments'],
+            'department_id' => $data['department_id'],
+            'admin' => '0',
+            'blocked' => '0',
 
->>>>>>> 2324cf2cee357ae904037838cb71ec7941e23b93
         ]);
     }
 
-    public function showDepartments ()
-    {
-        $departments = Department::all();
-        return view('auth.register')->with('departments',$departments);
-    }
+
 }

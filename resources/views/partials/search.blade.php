@@ -24,8 +24,8 @@
 			    </button>
 			        <ul class="dropdown-menu">
 			            <li>
-			            	<a   class="letra" href="{{route('user.orderName')}}">Nome</a>
-			            	<a   class="letra" href="#">Departamento</a>
+			            	<a   class="letra" href="{{route('users.orderName')}}">Nome</a>
+			            	<a   class="letra" href="{{route('users.orderDepartment')}}">Departamento</a>
 
 			            </li>
 			        </ul>

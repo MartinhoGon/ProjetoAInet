@@ -20,13 +20,13 @@ class UserController extends Controller
     	return view('users.listUsers',compact('users', 'departments'));
     }
 
-    public function showContacts()
-    {
-        $users = User::paginate(20);
-        
-        $departments = Department::all();
-        return view('users.showContacts',compact('users', 'departments'));
-    }
+    //public function showContacts()
+    //{
+    //    $users = User::paginate(20);
+    //    
+    //    $departments = Department::all();
+    //    return view('users.showContacts',compact('users', 'departments'));
+    //}
 
     //public function showUser(Request $users)
 
@@ -38,17 +38,15 @@ class UserController extends Controller
     public function edit(Request $user)
     {
         //$this->authorize('update', $user);
-        return view('users.edit', compact('user'));
+        $departments = Department::all();
+        return view('users.edit', compact('user', 'departments'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
         //$this->authorize('update', $users);
-        $except = ['password'];
-        // if (!$user->isAdmin()) {
-        //     $except[] = 'type';
-        // }
-        $users->fill($request->except($except));
+       
+        $users->fill($request->all());
         $users->save();
 
         return redirect()
@@ -58,10 +56,36 @@ class UserController extends Controller
 
     public function orderName()
     {
-        $users = User::paginate(20);
-        
+        $users = User::orderBy('name', 'asc')->paginate(20);
         $departments = Department::all();
         return view('users.listUsers',compact('users', 'departments'));
+    }
+
+    public function orderDepartment()
+    {
+        $users = User::orderBy('department_id', 'asc')->paginate(20);
+        $departments = Department::all();
+        return view('users.listUsers',compact('users', 'departments'));
+
+
+    }
+
+    public function block(User $id)
+    {
+        $users = $id;
+        $users->blocked = true;
+        User::store($user);
+
+        return redirect()->route('users.showUsers');
+    }
+
+    public function unblock(User $id)
+    {
+        $users = $id;
+        $users->blocked = false;
+        User::store($user);
+
+        return redirect()->route('users.showUsers');
     }
 
 

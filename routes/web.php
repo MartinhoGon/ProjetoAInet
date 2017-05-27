@@ -15,7 +15,7 @@ Route::get('/requests', 'RequestController@showRequests')->name('requests.showRe
 
 
 Route::get('requests/{requests}/edit', 'RequestController@edit')->name('requests.edit');
-Route::put('requests/{requests}/edit', 'RequestController@update')->name('requests.update');
+Route::post('requests/{requests}/edit', 'RequestController@update')->name('requests.update');
 
 Route::delete('requests/{requests}', 'RequestController@destroy')->name('requests.destroy');
 
@@ -24,18 +24,20 @@ Route::post('requests/create', 'RequestController@store')->name('requests.store'
 
 
 //-----------users----------------
+
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit');
 Route::post('users/{user}/edit', 'UserController@update')->name('users.update');
-Route::get('/users/{user}', 'UserController@showUserPerfil')->name('users.showUser');
 
-// Route::get('users/create', 'UserController@create')->name('users.create');
-// Route::post('users/create', 'UserController@store')->name('users.store');
+Route::get('/users/{user}', 'UserController@showUserPerfil')->name('users.showUserPerfil');
 
-Route::get('/contacts', 'UserController@showContacts')->name('users.showContacts');
+//Route::get('/contacts', 'UserController@showContacts')->name('users.showContacts');
 Route::get('/listUsers', 'UserController@showUsers')->name('users.showUsers');
+Route::get('/listUsers-nameAsc', 'UserController@orderName')->name('users.orderName');
+Route::get('/listUsers-departmentAsc', 'UserController@orderDepartment')->name('users.orderDepartment');
 
+Route::post('admin/{id}/block', 'UserController@block')->name('users.block');
 
-
+Route::post('admin/{id}/unblock', 'UserController@unblock')->name('users.unblock');
 //--------------department----------
 
 Route::get('/department', 'DepartmentController@showDepartments')->name('department.showDepartments');

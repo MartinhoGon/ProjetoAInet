@@ -2,7 +2,7 @@
 <html>
 <head>
         <meta charset="UTF-8">
-        <title>@yield('title')</title>
+        <title>PrintIt</title>
         <!-- Latest compiled and minified CSS & JS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/style.css">
@@ -30,11 +30,11 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
     
-                            <li><a href="{{route('users.showContacts')}}">Contactos</a></li>
+                            <li><a href="{{route('users.showUsers')}}">Contactos</a></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li><a href="{{route('users.showContacts')}}">Contactos</a></li>
+                            <li><a href="{{route('users.showUsers')}}">Contactos</a></li>
                             <li class="dropdown">
                             
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -77,7 +77,8 @@
         </div>
         @yield('content')
         <div class="container">
-            <div class="footer footer2 footer3 letra">
+            <div class="footer letra">
+                </br>
                 <p>Projeto AINET 2016/2017</p>
                 <p>Martinho Gonçalves | Rute Leite Ferreira | Patricia Pedrosa </p>
             </div>
