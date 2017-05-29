@@ -32,6 +32,7 @@
             <td></td>
             <td>{{$req->created_at}}</td>
             <td>
+            <a class="btn" href="{{route('requests.showRequest', $requests)}}"> Ver Request </a> 
                 <a class="btn btn-xs btn-primary" href="">Edit</a>
                 <a action="{{route('requests.destroy', $requests)}}" method="POST" role="form" class="inline">
                     {{method_field('delete')}}

@@ -26,6 +26,7 @@ Route::get('/requests-nameAsc', 'RequestController@orderName')->name('requests.o
 Route::get('/requests-departmentAsc', 'RequestController@orderDepartment')->name('requests.orderDepartment');
 Route::get('/requests-groupDepartment', 'RequestController@groupDepartment')->name('requests.groupDepartment');
 
+Route::get('/requests/{requests}-showRequest', 'RequestController@showRequest')->name('requests.showRequest');
 
 //-----------users----------------
 

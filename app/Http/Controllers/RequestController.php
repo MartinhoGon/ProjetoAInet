@@ -19,6 +19,11 @@ class RequestController extends Controller
     	return view('request.resquestList',compact('requests', 'departments'));
     }
 
+    public function showRequest(Pedido $request)
+    {
+        return view('requests.details_Request', compact('request'));
+    }
+
     public function edit(Pedido $requests)
     {
         $this->authorize('update', $requests);

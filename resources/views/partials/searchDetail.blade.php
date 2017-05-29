@@ -31,11 +31,6 @@
 			        </ul>
 			</div>
 		</td>
-	</tr>
-</table>
-
-<table class="pull-right">
-	<tr>
 		<td>
 			<form class="form-search pull-right">
 			    <input type="text" class="input-medium search-query">
