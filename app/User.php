@@ -26,7 +26,4 @@ class User extends Authenticatable
     	return $this->belongsTo( 'App\Department' , 'department_id', 'id');
     }
 
-   
-
-
 }

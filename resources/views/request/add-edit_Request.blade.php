@@ -3,6 +3,11 @@
 @section('pageName', 'Adicionar/Editar Pedido')
 
 @section('content')
+
+@if(count($errors) > 0)
+    @include('partials.errors')
+@endif
+
     <form action="{{route('requests.store')}}" method="post" class="form-group">
         {{csrf_field()}}
          <div class="form-group">
@@ -19,37 +24,37 @@
         </div>
         <div class="form-group">
             <label for="text" class="col-md-4 control-label">Número de cópias</label>
-           <input id="numberCopy" type="number" class="form-control" name="numberCopy" min="1" required="">
+           <input id="numberCopy" type="number" class="form-control" name="quantity" min="1" required="">
         </div>
         <div class="form-group">
             <label for="text" class="col-md-4 control-label">Tipo de tom</label>
-                <br><input type="radio" name="color" value="pb" > Preto e Branco<br>
-                <input type="radio" name="color" value="color"> Cores<br>
+                <br><input type="radio" name="colored" value="0" > Preto e Branco<br>
+                <input type="radio" name="colored" value="1"> Cores<br>
         </div>
         <div class="form-group">
             <label for="text" class="col-md-4 control-label">Agrupamento de folhas</label>
-                <br><input type="radio" name="Gpaper" value="grouped" checked=""> Agrafadas<br>
-                <input type="radio" name="Gpaper" value="ungrouped"> Sem agrafos<br>
+                <br><input type="radio" name="stapled" value="1" checked=""> Agrafadas<br>
+                <input type="radio" name="stapled" value="0"> Sem agrafos<br>
         </div>
         <div class="form-group">
             <label for="text" class="col-md-4 control-label">Dimensão do papel</label>
-                <br><input type="radio" name="paper_sizer" value="a4" checked=""> A4<br>
-                <input type="radio" name="paper_sizer" value="a3" > A3<br>
+                <br><input type="radio" name="paper_size" value="0" checked=""> A4<br>
+                <input type="radio" name="paper_size" value="1" > A3<br>
         </div>
         <div class="form-group">
             <label for="text" class="col-md-4 control-label">Tipo de papel</label>
-                <br><input type="radio" name="paper_type" value="draft" > Rascunho<br>
-                <input type="radio" name="paper_type" value="normal" checked=""> Normal<br>
-                <input type="radio" name="paper_type" value="photo"> Fotográfico<br>
+                <br><input type="radio" name="paper_type" value="0" > Rascunho<br>
+                <input type="radio" name="paper_type" value="1" checked=""> Normal<br>
+                <input type="radio" name="paper_type" value="2"> Fotográfico<br>
         </div>
         <div class="form-group">
             <label for="text" class="col-md-4 control-label">Tipo de paginação</label>
-                <br><input type="radio" name="pageType" value="frontBack" checked=""> Frente e verso<br>
-                <input type="radio" name="pageType" value="front"> Página única<br>
+                <br><input type="radio" name="front_back" value="1" checked=""> Frente e verso<br>
+                <input type="radio" name="front_back" value="0"> Página única<br>
         </div>
         <div class="form-group">
             <label for="file" class="col-md-4 control-label">Conteúdo multimédia</label>
-            <input id="file" type="file" class="form-control" name="fileF" required="">
+            <input id="file" type="file" class="form-control" name="file" required="">
         </div>
         <div class=request>
             <button type="submit" class="btn btn-success"> Submeter </button>

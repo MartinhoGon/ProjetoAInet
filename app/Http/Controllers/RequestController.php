@@ -61,7 +61,7 @@ class RequestController extends Controller
 
     public function store(StorePedidoRequest $requests)
     {
-        $this->authorize('create', Pedido::class);
+        //$this->authorize('create', Pedido::class);
         $requests = new Pedido;
         $requests->fill($requests->all());
         $requests->save();
@@ -71,7 +71,7 @@ class RequestController extends Controller
             ->with('success', 'Request added successfully');
     }
 
-     public function orderName()
+    public function orderName()
     {
         $requests = Pedido::orderBy('owner_id', 'asc')->paginate(20);
         $departments = Department::all();

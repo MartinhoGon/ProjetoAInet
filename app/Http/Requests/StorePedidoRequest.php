@@ -25,7 +25,7 @@ class StorePedidoRequest extends FormRequest
     {
         return [
             'quantity' => 'required',
-            'paper_sizer' => 'required',
+            'paper_size' => 'required',
             'paper_type' => 'required',
             'file' => 'required',
             'colored' => 'required',

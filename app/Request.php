@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Request extends Model
 {
+    
+    protected $fillable = [
+        'quantity', 'paper_size', 'paper_type', 'file', 'colored', 'stapled', 'front_back'
+    ];
+
 	//Establecer relações com a BD
     public function user() 
     {
@@ -25,6 +30,5 @@ class Request extends Model
 
     //---------------------------------------
 
-    
-    
+
 }
