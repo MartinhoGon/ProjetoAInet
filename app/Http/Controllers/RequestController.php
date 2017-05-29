@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Request as Pedido; 
 use Illuminate\Http\Request;
 use App\Department;
+use App\User;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
 
@@ -63,6 +64,29 @@ class RequestController extends Controller
         return redirect()
             ->route('requests.showRequests')
             ->with('success', 'Request added successfully');
+    }
+
+     public function orderName()
+    {
+        $requests = Pedido::orderBy('owner_id', 'asc')->paginate(20);
+        $departments = Department::all();
+        return view('request.resquestList',compact('departments', 'requests'));
+    }
+
+    public function orderDepartment()
+    {
+        $requests = Pedido::orderBy('department_id', 'asc')->paginate(20);
+        $departments = Department::all();
+        return view('request.resquestList',compact('user', 'departments', 'requests'));
+
+
+    }
+
+    public function groupDepartment()
+    {
+        $users = User::groupBy('department_id');
+        User::store($users);
+        return redirect()->back();
     }
 
 

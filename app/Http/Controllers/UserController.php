@@ -44,7 +44,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        //$this->authorize('update', $users);
+        //$this->authorize('update', $user);
        
         $users->fill($request->all());
         $users->save();
@@ -70,24 +70,28 @@ class UserController extends Controller
 
     }
 
+    public function groupDepartment()
+    {
+        $users = User::groupBy('department_id');
+        User::store($users);
+        return redirect()->back();
+    }
+
     public function block(User $id)
     {
-        $users = $id;
-        $users->blocked = true;
-        User::store($user);
-
+        $user = User::findOrFail($id);
+        $user->blocked = true;
+        $user->save();
         return redirect()->route('users.showUsers');
     }
 
     public function unblock(User $id)
     {
-        $users = $id;
-        $users->blocked = false;
-        User::store($user);
-
+        $user = User::findOrFail($id);
+        $user->blocked = false;
+        $user->save();
         return redirect()->route('users.showUsers');
     }
-
 
     //public function create()
     //{

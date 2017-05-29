@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('create') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -42,10 +42,10 @@
                         <div class="form-group">
                             <label for="department" class="col-md-4 control-label">Department</label>
                             <div class="col-md-6">
-                                <select name="Departamento" id="departamento" class="form-control">
+                                <select name="department_id" id="department_id" class="form-control">
                                     <option disabled selected> -- select an option -- </option>
                                     @foreach (\App\Department::all() as $dep)
-                                        <option  value= "{{$dep->id}}">{{$dep->name}}</option>
+                                        <option  value="{{$dep->id}}">{{$dep->name}}</option>
                                     @endforeach
                                     
                                     

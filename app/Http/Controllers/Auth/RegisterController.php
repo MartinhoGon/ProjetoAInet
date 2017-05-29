@@ -64,9 +64,11 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    public function create(Request $data)
     {
-        return User::create([
+        
+      
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
@@ -75,6 +77,8 @@ class RegisterController extends Controller
             'blocked' => '0',
 
         ]);
+
+        return view('home', compact('user'));
     }
 
 

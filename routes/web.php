@@ -22,6 +22,10 @@ Route::delete('requests/{requests}', 'RequestController@destroy')->name('request
 Route::get('requests/create', 'RequestController@create')->name('requests.create');
 Route::post('requests/create', 'RequestController@store')->name('requests.store');
 
+Route::get('/requests-nameAsc', 'RequestController@orderName')->name('requests.orderName');
+Route::get('/requests-departmentAsc', 'RequestController@orderDepartment')->name('requests.orderDepartment');
+Route::get('/requests-groupDepartment', 'RequestController@groupDepartment')->name('requests.groupDepartment');
+
 
 //-----------users----------------
 
@@ -34,10 +38,11 @@ Route::get('/users/{user}', 'UserController@showUserPerfil')->name('users.showUs
 Route::get('/listUsers', 'UserController@showUsers')->name('users.showUsers');
 Route::get('/listUsers-nameAsc', 'UserController@orderName')->name('users.orderName');
 Route::get('/listUsers-departmentAsc', 'UserController@orderDepartment')->name('users.orderDepartment');
+Route::get('/listUsers-groupDepartment', 'UserController@groupDepartment')->name('users.groupDepartment');
 
-Route::post('admin/{id}/block', 'UserController@block')->name('users.block');
+Route::post('listUsers/{id}/block', 'UserController@block')->name('users.block');
 
-Route::post('admin/{id}/unblock', 'UserController@unblock')->name('users.unblock');
+Route::post('listUsers/{id}/unblock', 'UserController@unblock')->name('users.unblock');
 //--------------department----------
 
 Route::get('/department', 'DepartmentController@showDepartments')->name('department.showDepartments');
@@ -46,7 +51,7 @@ Route::get('/department', 'DepartmentController@showDepartments')->name('departm
 Auth::routes();
 
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/create', 'Auth\RegisterController@create')->name('create');
 
 // //Route::get('/home', 'DepartmentController@showDepartments');
 

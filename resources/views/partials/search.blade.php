@@ -8,9 +8,8 @@
 			    </button>
 			        <ul class="dropdown-menu">
 			            <li>
-
-			           		 @foreach ($departments as $dep)
-                    			 <option value=" {{$dep->id}}"> {{$dep->name}} </option>
+			           		@foreach ($departments as $dep)
+            					<a href="{{route('users.groupDepartment')}}" <option value=" {{$dep->id}}"> {{$dep->name}} </option></a>
              				@endforeach
 			            </li>
 			        </ul>
@@ -24,6 +23,7 @@
 			    </button>
 			        <ul class="dropdown-menu">
 			            <li>
+
 			            	<a   class="letra" href="{{route('users.orderName')}}">Nome</a>
 			            	<a   class="letra" href="{{route('users.orderDepartment')}}">Departamento</a>
 

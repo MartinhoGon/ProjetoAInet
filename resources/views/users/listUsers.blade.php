@@ -4,7 +4,41 @@
 
 @section('content')
 
-@include('partials.search')
+<table class="pull-right">
+    <tr>
+        <td>
+            <div class="btn-group col-md-pull-12">
+                <button class="btn letra">Ver departamento:</button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            @foreach ($departments as $dep)
+                                <a href="{{route('users.groupDepartment')}}" <option value=" {{$dep->id}}"> {{$dep->name}} </option></a>
+                            @endforeach
+                        </li>
+                    </ul>
+            </div>
+        </td>
+        <td>
+            <div class="btn-group col-md-pull-9">
+                <button class="btn letra">Ordenar por:</button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                    <ul class="dropdown-menu">
+                        <li>
+
+                            <a   class="letra" href="{{route('users.orderName')}}">Nome</a>
+                            <a   class="letra" href="{{route('users.orderDepartment')}}">Departamento</a>
+
+                        </li>
+                    </ul>
+            </div>
+        </td>
+    </tr>
+</table>
 
  <table class="table table-striped letra">
     <thead>
@@ -23,7 +57,10 @@
             <td>{{$user->phone}}</td>
             <td> 
             <a class="btn" href="{{route('users.showUserPerfil', $user)}}"> Ver perfil </a> 
-            <a class="btn btn-xs btn-primary" href="{{route('users.edit', $user)}}">Edit</a>
+            @can('update', $user)
+                <a class="btn btn-xs btn-primary" href="{{route('users.edit', $user)}}">Edit</a>
+            @endcan
+            
             @if($user->blocked == true)
                 <a class="btn btn-xs btn-success" href="{{route('users.unblock', ['id' =>$user->id])}}">Unblock</a>
             @else
