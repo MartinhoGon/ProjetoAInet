@@ -66,6 +66,8 @@ Route::get('/administracao/Comments-unblock', 'AdministradorController@commentsU
 
 
 
+
+Route::get('/emailverify/{token}', 'Auth\RegisterController@verify')->name('verify');
 Auth::routes();
 
 Route::post('/create', 'Auth\RegisterController@create')->name('create');
