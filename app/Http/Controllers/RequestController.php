@@ -6,6 +6,7 @@ use App\Request as Pedido;
 use Illuminate\Http\Request;
 use App\Department;
 use App\User;
+use App\Policies\RequestPolicy;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
 
@@ -14,6 +15,7 @@ class RequestController extends Controller
 {
     public function showRequests()
     {
+
     	$requests = Pedido::paginate(20);
     	$departments = Department::all();
 
@@ -22,21 +24,25 @@ class RequestController extends Controller
 
     public function showRequest(Pedido $request)
     {
-        return view('requests.details_Request', compact('request'));
+        return view('request.details_Request', compact('request'));
     }
 
     public function edit(Pedido $requests)
     {
-        //$this->authorize('update', $requests);
-        return view('requests.add-edit_Request', compact('requests'));
+
+        $this->authorize('update', $requests);
+        $departments = Department::all();
+        return view('request.edit_Request', compact('requests', 'departments'));
     }
 
-    public function update(Pedido $requests)
-    {
-        //$this->authorize('update', $requests);
-       
-        $requests->save();
 
+    public function update(UpdateUserRequest $requests, Request $request)
+    {
+        $this->authorize('update', $requests);
+       
+        
+        $requests->fill($requests->all());
+        $requests->save();
         return redirect()
             ->route('requests.showRequests')
             ->with('success', 'Request saved successfully');
@@ -44,7 +50,7 @@ class RequestController extends Controller
 
     public function destroy(Pedido $requests)
     {
-        //$this->authorize('delete', $requests);
+        $this->authorize('delete', $requests);
 
         $requests->delete();
 
@@ -55,14 +61,14 @@ class RequestController extends Controller
 
     public function create()
     {
-        //$this->authorize('create', Pedido::class);
+        $this->authorize('create', Pedido::class);
         $requests = new Pedido();
         return view('request.add_Request', compact('requests'));
     }
 
     public function store(StorePedidoRequest $requests)
     {
-        //$this->authorize('create', Pedido::class);
+        $this->authorize('create', Pedido::class);
         $requests = new Pedido;
         $requests->fill($requests->all());
         $requests->save();
@@ -74,14 +80,14 @@ class RequestController extends Controller
 
     public function orderName()
     {
-        $requests = Pedido::orderBy('owner_id', 'asc')->paginate(20);
+        $requests = Pedido::orderBy('owner_id->name', 'asc')->paginate(20);
         $departments = Department::all();
         return view('request.resquestList',compact('departments', 'requests'));
     }
 
     public function orderDepartment()
     {
-        $requests = Pedido::orderBy('department_id', 'asc')->paginate(20);
+        $requests = Pedido::orderBy('owner_id->department_id', 'asc')->paginate(20);
         $departments = Department::all();
         return view('request.resquestList',compact('user', 'departments', 'requests'));
 
@@ -89,9 +95,9 @@ class RequestController extends Controller
 
     public function groupDepartment()
     {
-        $users = User::groupBy('department_id');
-        User::store($users);
-        return redirect()->back();
+        $users = User::groupBy('department_id')->paginate(20);
+        $departments = Department::all();
+        return view('request.resquestList',compact('users', 'departments'));
     }
 
 

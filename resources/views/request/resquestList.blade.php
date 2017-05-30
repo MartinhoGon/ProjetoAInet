@@ -5,9 +5,11 @@
 @section('content')
 
 @include('partials.searchDetail')
+@can('create', $requests)
 <div>
     <a class="btn btn-primary" href="{{route('requests.create')}}">Add request</a>
 </div>
+@endcan
 @if(count($requests))
  <table class="table table-striped letra">
     <thead>
@@ -17,7 +19,6 @@
             <th>Nome do funcionário</th>
             <th>Departamento do funcionário</th>
             <th>Estado</th>
-            <th>Tipo de folha</th>
             <th>Data do pedido</th>
         </tr>
     </thead>
@@ -27,18 +28,22 @@
             <td></td>
             <td>{{$req->id}}</td>
             <td>{{$req->user->name}}</td>
-            <td></td>
+            <td>{{$req->user->department->name}}</td>
             <td>{{$req->status}}</td>
-            <td></td>
             <td>{{$req->created_at}}</td>
             <td>
             <a class="btn" href="{{route('requests.showRequest', $requests)}}"> Ver Request </a> 
+            @can('update', $requests)
                 <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $requests)}}">Edit</a>
-                <a action="{{route('requests.destroy', $requests)}}" method="POST" role="form" class="inline">
+                @endcan
+                @can('delete', $requests)
+                <form action="{{route('requests.destroy', $requests)}}" method="POST" role="form" class="inline">
                     {{method_field('delete')}}
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-xs btn-danger">Delete</button>
-                </a>
+                </form>
+                @endcan
+                
             </td>
         </tr>
         @endforeach

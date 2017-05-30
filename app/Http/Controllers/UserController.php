@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use App\Department;
+use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -25,7 +27,7 @@ class UserController extends Controller
         return view('users.viewOne_Users', compact('user'));
     }
 
-    public function edit(Request $user)
+    public function edit(User $user)
     {
         $this->authorize('update', $user);
         $departments = Department::all();

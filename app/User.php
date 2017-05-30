@@ -26,4 +26,14 @@ class User extends Authenticatable
     	return $this->belongsTo( 'App\Department' , 'department_id', 'id');
     }
 
+    public function isAdmin()
+    {
+        return (int) $this->admin === 1;
+    }
+
+    public function isFunc()
+    {
+        return (int) $this->admin === 0;
+    }
+
 }

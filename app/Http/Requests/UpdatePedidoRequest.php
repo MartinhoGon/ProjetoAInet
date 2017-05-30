@@ -24,13 +24,15 @@ class UpdatePedidoRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => 'required',
-            'paper_sizer' => 'required',
-            'paper_type' => 'required',
-            'file' => 'required',
-            'colored' => 'required',
-            'stapled' => 'required',
-            'front_back' => 'required',
+            'quantity' => 'required|alpha_num',
+            'paper_size' => 'required|between:3,4',
+            'paper_type' => 'required|between:0,2',
+            'file' => 'required|file',
+            'colored' => 'required|between:0,1',
+            'stapled' => 'required|between:0,1',
+            'front_back' => 'required|between:0,1',
+            'description' => 'required|alpha_dash',
+            'due_date' => 'required|date'
         ];
     }
 }
