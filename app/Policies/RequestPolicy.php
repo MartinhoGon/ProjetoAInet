@@ -12,7 +12,7 @@ class RequestPolicy
 	use HandlesAuthorization;
    
 
-    public function create(Request $authUser)
+    public function create(Pedido $authUser)
     {
         return true;
     }

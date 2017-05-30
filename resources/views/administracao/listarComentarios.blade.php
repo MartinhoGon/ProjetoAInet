@@ -23,7 +23,7 @@
             <td>{{$comment->comment}}</td>
             <td>{{$comment->blocked}}</td>
             <td>{{$comment->request_id}}</td>
-            <td>{{$comment->user_id}}</td>
+            <td>{{$comment->user->name}}</td>
         </tr>
         @endforeach
 </table>

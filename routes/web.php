@@ -15,9 +15,9 @@ Route::get('/requests', 'RequestController@showRequests')->name('requests.showRe
 
 
 Route::get('requests/{requests}/edit', 'RequestController@edit')->name('requests.edit');
-Route::post('requests/{requests}/edit', 'RequestController@update')->name('requests.update');
+Route::put('requests/{requests}/edit', 'RequestController@update')->name('requests.update');
 
-Route::delete('requests/{requests}', 'RequestController@destroy')->name('requests.destroy');
+Route::delete('requests/delete', 'RequestController@destroy')->name('requests.destroy');
 
 Route::get('requests/create', 'RequestController@create')->name('requests.create');
 Route::post('requests/create', 'RequestController@store')->name('requests.store');
@@ -26,7 +26,7 @@ Route::get('/requests-nameAsc', 'RequestController@orderName')->name('requests.o
 Route::get('/requests-departmentAsc', 'RequestController@orderDepartment')->name('requests.orderDepartment');
 Route::get('/requests-groupDepartment', 'RequestController@groupDepartment')->name('requests.groupDepartment');
 
-Route::get('/requests/{requests}-showRequest', 'RequestController@showRequest')->name('requests.showRequest');
+Route::get('/requests/{requests}', 'RequestController@showRequest')->name('requests.showRequest');
 
 //-----------users----------------
 

@@ -24,6 +24,7 @@ class RequestController extends Controller
 
     public function showRequest(Pedido $request)
     {
+
         return view('request.details_Request', compact('request'));
     }
 
@@ -36,7 +37,7 @@ class RequestController extends Controller
     }
 
 
-    public function update(UpdateUserRequest $requests, Request $request)
+    public function update(UpdatePedidoRequest $requests, Request $request)
     {
         $this->authorize('update', $requests);
        

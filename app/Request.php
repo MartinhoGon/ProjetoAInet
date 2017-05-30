@@ -27,7 +27,19 @@ class Request extends Model
     	return $this->hasOne('App\Printer');
     }
 
+    public function typeToStr()
+    {
+        switch ($this->status) {
+            case 0:
+                return 'por imprimir';
+            case 1:
+                return 'concluido';
+            case 2:
+                return 'recusado';
+        }
 
+        return 'Unknown';
+    }
     //---------------------------------------
 
 

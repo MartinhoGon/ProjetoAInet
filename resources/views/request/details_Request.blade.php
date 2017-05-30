@@ -4,28 +4,30 @@
 
 @section('content')
 
-<h1>{{$user->name}}</h1>
-<table >
+<!--<h1>{{$request->user->name}}</h1>
+<table>
       <th>
             <p><b>Email:</b>
-           {{$user->email}}</p>
+           {{$request->user->email}}</p>
 
        @if(is_null($user->phone))
        
        @else
             <p><b>Telemóvel:</b>
-            {{$user->phone}}</p>
+            {{$reqest->user->phone}}</p>
         @endif
 
            <p><b> Departamento:</b>
-            {{$user->department->name}}
+            {{$request->user->department->name}}
            </p>
             </th>
 </table>
-<br />
+<br />-->
 
 <table >
       <th>
+      <p><b>Detalhes do pedido:</b>
+
       @if(is_null($request->description))
        
        @else
@@ -33,20 +35,10 @@
            {{$request->description}}</p>
         @endif
 
-       @if(is_null($request->created_at))
-       
-       @else
             <p><b>Data do pedido:</b>
             {{$request->created_at}}</p>
-        @endif
-
-        <p><b>Detalhes do pedido:</b>
-        @if(is_null($request->created_at))
-       
-       @else
-            <p><b>Detalhes do pedido:</b>
-            {{$request->created_at}}</p>
-        @endif
+      
+        
 
 
             </th>

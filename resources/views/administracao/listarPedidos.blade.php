@@ -9,19 +9,23 @@
  <table class="table table-striped letra">
     <thead>
         <tr>
+        <th>Nome do Funcionario</th>
+        <th>Departamento do Funcionario</th>
             <th>Description</th>
             <th>Data Limite</th>
-            <th>Nome do Funcionario</th>
+            
             <th>Estado</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($requests as $request)
         <tr>
+          <td>{{$request->user->name}}</td>
+          <td>{{$request->user->department->name}}</td>
             <td>{{$request->description}}</td>
             <td>{{$request->due_date}}</td>
-            <td>{{$request->user->name}}</td>
-            <td>{{$request->status}}</td>
+          
+            <td>{{$request->typeToStr()}}</td>
 
         </tr>
         @endforeach
