@@ -64,10 +64,10 @@
                         <a class="letra" href="{{route('home')}}">Home</a>
                     </li>
                     <li>
-                        <a class="letra" href="{{route('requests.showRequests')}}">Dashboard</a>
+                        <a class="letra" href="{{route('requests.showRequests')}}">Pedidos</a>
                     </li>
                     <li>
-                        <a class="letra" href="#">...</a>
+                        <a class="letra" href="{{route('users.usersBlock')}}">Administração</a>
                     </li>
                 </ul>
             </div>

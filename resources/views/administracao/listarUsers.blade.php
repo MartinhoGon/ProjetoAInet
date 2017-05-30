@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('partials.search')
+@include('administracao.searchAdmin')
 
  <table class="table table-striped letra">
     <thead>
@@ -12,7 +12,6 @@
             <th>Nome</th>
             <th>Mail</th>
             <th>Telemóvel</th>
-            <th>Mais detalhes</th>
         </tr>
     </thead>
     <tbody>
@@ -21,12 +20,6 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
-            <td> 
-            <a class="btn" href="{{route('users.showUser', $user)}}"> Ver perfil </a> 
-            {{-- <a class="btn btn-xs btn-primary" href="{{route('users.edit', $user)}}">Edit</a>
-            <a class="btn btn-xs btn-danger" href="">Block</a> --}}
-          
-            </td>
         </tr>
         @endforeach
 </table>

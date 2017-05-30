@@ -78,7 +78,8 @@ class RegisterController extends Controller
 
         ]);
 
-        return view('home', compact('user'));
+        return redirect()
+            ->route('home');
     }
 
 

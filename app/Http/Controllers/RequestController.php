@@ -16,6 +16,7 @@ class RequestController extends Controller
     {
     	$requests = Pedido::paginate(20);
     	$departments = Department::all();
+
     	return view('request.resquestList',compact('requests', 'departments'));
     }
 
@@ -26,13 +27,13 @@ class RequestController extends Controller
 
     public function edit(Pedido $requests)
     {
-        $this->authorize('update', $requests);
+        //$this->authorize('update', $requests);
         return view('requests.add-edit_Request', compact('requests'));
     }
 
     public function update(Pedido $requests)
     {
-        $this->authorize('update', $requests);
+        //$this->authorize('update', $requests);
        
         $requests->save();
 
@@ -43,7 +44,7 @@ class RequestController extends Controller
 
     public function destroy(Pedido $requests)
     {
-        $this->authorize('delete', $requests);
+        //$this->authorize('delete', $requests);
 
         $requests->delete();
 
@@ -56,7 +57,7 @@ class RequestController extends Controller
     {
         //$this->authorize('create', Pedido::class);
         $requests = new Pedido();
-        return view('request.add-edit_Request', compact('requests'));
+        return view('request.add_Request', compact('requests'));
     }
 
     public function store(StorePedidoRequest $requests)
@@ -83,7 +84,6 @@ class RequestController extends Controller
         $requests = Pedido::orderBy('department_id', 'asc')->paginate(20);
         $departments = Department::all();
         return view('request.resquestList',compact('user', 'departments', 'requests'));
-
 
     }
 

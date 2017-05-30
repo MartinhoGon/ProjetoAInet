@@ -20,16 +20,6 @@ class UserController extends Controller
     	return view('users.listUsers',compact('users', 'departments'));
     }
 
-    //public function showContacts()
-    //{
-    //    $users = User::paginate(20);
-    //    
-    //    $departments = Department::all();
-    //    return view('users.showContacts',compact('users', 'departments'));
-    //}
-
-    //public function showUser(Request $users)
-
     public function showUserPerfil(User $user)
     {
         return view('users.viewOne_Users', compact('user'));
@@ -37,14 +27,14 @@ class UserController extends Controller
 
     public function edit(Request $user)
     {
-        //$this->authorize('update', $user);
+        $this->authorize('update', $user);
         $departments = Department::all();
         return view('users.edit', compact('user', 'departments'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        //$this->authorize('update', $user);
+        $this->authorize('update', $user);
        
         $users->fill($request->all());
         $users->save();
@@ -72,9 +62,9 @@ class UserController extends Controller
 
     public function groupDepartment()
     {
-        $users = User::groupBy('department_id');
-        User::store($users);
-        return redirect()->back();
+        $users = User::groupBy('department_id')->paginate(20);
+        $departments = Department::all();
+        return view('users.listUsers',compact('users', 'departments'));
     }
 
     public function block(User $id)
@@ -93,25 +83,4 @@ class UserController extends Controller
         return redirect()->route('users.showUsers');
     }
 
-    //public function create()
-    //{
-    //     $this->authorize('create', Request::class);
-    //     $users = new User();
-    //     return view('users.add', compact('users'));
-    // }
-
-
-    // public function store(StoreUserRequest $users)
-    // {
-    //     $this->authorize('create', User::class);
-    //     $users = new User;
-    //     $users->fill($request->all());
-    //     $users->password = Hash::make($request->password);
-
-    //     $users->save();
-
-    //     return redirect()
-    //         ->route('users.showUsers')
-    //         ->with('success', 'User added successfully');
-    // }
 }

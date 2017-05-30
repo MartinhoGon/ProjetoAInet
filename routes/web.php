@@ -35,7 +35,6 @@ Route::post('users/{user}/edit', 'UserController@update')->name('users.update');
 
 Route::get('/users/{user}', 'UserController@showUserPerfil')->name('users.showUserPerfil');
 
-//Route::get('/contacts', 'UserController@showContacts')->name('users.showContacts');
 Route::get('/listUsers', 'UserController@showUsers')->name('users.showUsers');
 Route::get('/listUsers-nameAsc', 'UserController@orderName')->name('users.orderName');
 Route::get('/listUsers-departmentAsc', 'UserController@orderDepartment')->name('users.orderDepartment');
@@ -49,20 +48,28 @@ Route::post('listUsers/{id}/unblock', 'UserController@unblock')->name('users.unb
 Route::get('/department', 'DepartmentController@showDepartments')->name('department.showDepartments');
 
 
-Auth::routes();
-
-
-Route::post('/create', 'Auth\RegisterController@create')->name('create');
-
-// //Route::get('/home', 'DepartmentController@showDepartments');
-
-// Route::get('/', function () {
-//     return redirect()->route('home');
-// });
-
-
 
 //----------Statistics home-------------
 
 Route::get('/home','StatisticsRequestsController@showStatistics') ->name('home');
 
+
+
+//----------administracao----------------
+
+Route::get('/administracao/Users-block', 'AdministradorController@usersBlock')->name('users.usersBlock');
+Route::get('/administracao/Users-unblock', 'AdministradorController@usersUnblock')->name('users.usersUnblock');
+Route::get('/administracao/Pedidos', 'AdministradorController@pedidos')->name('requests.pedidos');
+Route::get('/administracao/Comments-block', 'AdministradorController@commentsBlock')->name('comments.commentsBlock');
+Route::get('/administracao/Comments-unblock', 'AdministradorController@commentsUnblock')->name('comments.commentsUnblock');
+
+
+
+
+Auth::routes();
+
+Route::post('/create', 'Auth\RegisterController@create')->name('create');
+
+Route::get('/', function () {
+    return redirect()->route('home');
+});
