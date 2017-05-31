@@ -13,6 +13,9 @@ use App\Http\Requests\UpdatePedidoRequest;
 
 class RequestController extends Controller
 {
+
+    protected $fillable = ['description','quantity'];
+
     public function showRequests(User $authUser)
     {
         $requests = Pedido::paginate(20);
@@ -23,15 +26,15 @@ class RequestController extends Controller
 
     public function showRequest(Pedido $request)
     {
-        return view('request.details_Request', compact('request'));
+        return view('request.details_Request',compact('request'));
     }
 
-    public function edit(Pedido $requests)
+    public function edit(Pedido $request)
     {
 
-        $this->authorize('update', $requests);
+        $this->authorize('update', $request);
         $departments = Department::all();
-        return view('request.edit_Request', compact('requests', 'departments'));
+        return view('request.edit_Request', compact('request', 'departments'));
     }
 
 
@@ -47,11 +50,11 @@ class RequestController extends Controller
             ->with('success', 'Request saved successfully');
     }
 
-    public function destroy(Pedido $requests)
+    public function destroy(Pedido $request)
     {
-        $this->authorize('delete', $requests);
+        $this->authorize('delete', $request);
 
-        $requests->delete();
+        $request->delete();
 
         return redirect()
             ->route('requests.showRequests')
@@ -61,8 +64,8 @@ class RequestController extends Controller
     public function create()
     {
         $this->authorize('create', Pedido::class);
-        $requests = new Pedido();
-        return view('request.add_Request', compact('requests'));
+        $request = new Pedido();
+        return view('request.add_Request', compact('request'));
     }
 
     public function store(StorePedidoRequest $requests)
@@ -97,6 +100,23 @@ class RequestController extends Controller
         $users = User::groupBy('department_id')->paginate(20);
         $departments = Department::all();
         return view('request.resquestList',compact('users', 'departments'));
+    }
+
+    
+    public function block(User $id)
+    {
+        $user = User::findOrFail($id)->first();
+        $user->blocked = true;
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function unblock(User $id)
+    {
+        $user = User::findOrFail($id)->first();
+        $user->blocked = false;
+        $user->save();
+        return redirect()->back();
     }
 
     

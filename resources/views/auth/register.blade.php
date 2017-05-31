@@ -39,7 +39,7 @@
                         </div>
                         
                         
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
                             <label for="department" class="col-md-4 control-label">Department</label>
                             <div class="col-md-6">
                                 <select name="department_id" id="department_id" class="form-control">

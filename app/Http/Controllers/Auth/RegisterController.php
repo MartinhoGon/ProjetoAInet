@@ -82,16 +82,7 @@ class RegisterController extends Controller
             ->route('home');
     }
 
-    public function verify($token)
-    {
-        $activation = PasswordReset::where('token', $token)->first();
-        $user = User::where('email', $activation->email)->first();
-        $user->blocked = 0;
-        if ($user->save()) {
-            $this->guard()->login($user);
-            redirect(route('home'));
-        }
-    }
+    
 
 
 }
