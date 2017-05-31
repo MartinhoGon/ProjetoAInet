@@ -14,7 +14,6 @@ class StatisticsRequestsController extends Controller
 {
     public function showStatistics(){
 
-
         //total impressoes P&B versus Cores
         $this -> showStatisticsColor();
 
@@ -26,7 +25,9 @@ class StatisticsRequestsController extends Controller
 
 
         return view('home', compact('countTotalUntilToday'));
+
     }
+
 
     //total impressoes P&B versus Cores
      public function showStatisticsColor(){
@@ -94,7 +95,7 @@ class StatisticsRequestsController extends Controller
 
         
 
-        $avg = $countTotalUntilToday/$dayOfToday;
+        $avg = round($countTotalUntilToday/$dayOfToday);
 
         return $avg;
 
