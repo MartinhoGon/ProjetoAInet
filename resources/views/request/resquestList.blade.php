@@ -32,7 +32,7 @@
             <td>{{$req->typeToStr()}}</td>
             <td>{{$req->created_at}}</td>
             <td>
-            <a class="btn" href="{{route('requests.showRequest', $req)}}"> Ver detalhes</a> 
+            <a class="btn" href="{{route('requests.showRequest', ['request'=>$req])}}"> Ver detalhes</a> 
             {{--@can('update', $requests) --}}
                 <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $req)}}">Edit</a>
                 {{--@endcan --}}

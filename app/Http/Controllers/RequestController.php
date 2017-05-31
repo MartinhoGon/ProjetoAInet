@@ -29,7 +29,6 @@ class RequestController extends Controller
 
     public function showRequest(Pedido $request)
     {
-        //dd($request);
         return view('request.details_Request', compact('request'));
     }
 
@@ -106,20 +105,18 @@ class RequestController extends Controller
         return view('request.resquestList',compact('users', 'departments'));
     }
 
-    public function concluirPedido(Pedido $id)
+    public function concluirPedido(Pedido $request)
     {
-        $request = Pedido::findOrFail($id)->first();
         $request->status = 1;
         $request->save();
-        return redirect()->route('requests.showRequest');
+        return redirect()->route('requests.showRequest',$request);
     }
 
-    public function recusarPedido(Pedido $id)
+    public function recusarPedido(Pedido $request)
     {
-        $request = Pedido::findOrFail($id)->first();
         $request->status = 2;
         $request->save();
-        return redirect()->route('requests.showRequest');
+        return redirect()->route('requests.showRequest' , $request);
     }
 
 

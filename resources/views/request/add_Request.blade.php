@@ -7,7 +7,7 @@
     @include('partials.errors')
 @endif
 
-<form action="{{route('requests.store')}}" method="post" class="form-group">
+<form action="{{route('requests.store')}}" method="post" class="form-group" enctype="multipart/form-data">
     {{csrf_field()}}
     @include('request.add-edit_Request')
 

@@ -17,8 +17,8 @@ Route::get('/requests', 'RequestController@showRequests')->name('requests.showRe
 Route::get('requests/{requests}/edit', 'RequestController@edit')->name('requests.edit');
 Route::put('requests/{requests}/edit', 'RequestController@update')->name('requests.update');
 
-Route::post('requests/{id}/concluirPedido', 'RequestController@concluirPedido')->name('requests.concluirPedido');
-Route::post('requests/{id}/recusarPedido', 'RequestController@recusarPedido')->name('requests.recusarPedido');
+Route::post('requests/{request}/concluirPedido', 'RequestController@concluirPedido')->name('requests.concluirPedido');
+Route::post('requests/{request}/recusarPedido', 'RequestController@recusarPedido')->name('requests.recusarPedido');
 
 Route::delete('requests/delete', 'RequestController@destroy')->name('requests.destroy');
 
@@ -29,7 +29,7 @@ Route::get('/requests-nameAsc', 'RequestController@orderName')->name('requests.o
 Route::get('/requests-departmentAsc', 'RequestController@orderDepartment')->name('requests.orderDepartment');
 Route::get('/requests-groupDepartment', 'RequestController@groupDepartment')->name('requests.groupDepartment');
 
-Route::get('/requests/{requests}', 'RequestController@showRequest')->name('requests.showRequest');
+Route::get('/requests/{request}', 'RequestController@showRequest')->name('requests.showRequest');
 
 //-----------users----------------
 
