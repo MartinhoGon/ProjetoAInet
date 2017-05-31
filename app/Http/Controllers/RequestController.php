@@ -72,8 +72,8 @@ class RequestController extends Controller
     public function create()
     {
         $this->authorize('create', Pedido::class);
-        $request = new Pedido();
-        return view('request.add_Request', compact('request'));
+        $requests = new Pedido();
+        return view('request.add_Request', compact('requests'));
     }
 
     public function store(StorePedidoRequest $requests)
@@ -127,9 +127,10 @@ class RequestController extends Controller
     }
 
 
-    public function concluirPedido(Pedido $request)
+    public function concluirPedido(Pedido $request, Request $req)
     {
         $request->status = 1;
+        $request->printer_id = $req->printer_id;
         $request->save();
         return redirect()->route('requests.showRequest',$request);
     }
@@ -140,7 +141,5 @@ class RequestController extends Controller
         $request->save();
         return redirect()->route('requests.showRequest' , $request);
     }
-
-
 
 }

@@ -39,7 +39,7 @@
     @if($request->status == 0)
         <form action="{{route('requests.concluirPedido', $request)}}" method="post" class="form-group">
           {{csrf_field()}}
-          <select name="$request->printer_id" id="printer_id" class="form-control">
+          <select name="printer_id" id="printer_id" class="form-control">
               <option value = "0" selected disabled> Impressora usada</option>
                   @foreach ($printers as $printer)
                       <option  value="{{$printer->id}}">{{$printer->name}}</option>
