@@ -29,7 +29,7 @@
             <td>{{$req->id}}</td>
             <td>{{$req->user->name}}</td>
             <td>{{$req->user->department->name}}</td>
-            <td>{{$req->typeToStr()}}</td>
+            <td>{{$req->statusToStr()}}</td>
             <td>{{$req->created_at}}</td>
             <td>
             <a class="btn" href="{{route('requests.showRequest', ['request'=>$req])}}"> Ver detalhes</a> 

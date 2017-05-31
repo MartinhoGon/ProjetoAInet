@@ -29,7 +29,7 @@ class Request extends Model
 
     //---------------------------------------
 
-    public function typeToStr()
+    public function statusToStr()
     {
         switch ($this->status) {
             case 0:
@@ -42,6 +42,47 @@ class Request extends Model
 
         return 'Unknown';
     }
+
+    public function stapledToStr()
+    {
+        switch ($this->stapled) {
+            case 0:
+                return 'Sem agrafo';
+            case 1:
+                return 'Agrafado';
+        }
+
+        return 'Unknown';
+    }
+
+    public function tipoFolhaToStr()
+    {
+        switch ($this->paper_type) {
+            case 0:
+                return 'Rascunho';
+            case 1:
+                return 'Normal';
+            case 2:
+                return 'Fotografico';
+        }
+
+        return 'Unknown';
+    }
+
+
+    public function tamanhoFolhaToStr()
+    {
+        switch ($this->paper_size) {
+            case 3:
+                return 'A3';
+            case 4:
+                return 'A4';
+        }
+
+        return 'Unknown';
+    }
+
+
 
 
 }
