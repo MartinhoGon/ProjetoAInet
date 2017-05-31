@@ -25,7 +25,7 @@
             <td>{{$request->description}}</td>
             <td>{{$request->due_date}}</td>
           
-            <td>{{$request->typeToStr()}}</td>
+            <td>{{$request->statusToStr()}}</td>
 
         </tr>
         @endforeach
