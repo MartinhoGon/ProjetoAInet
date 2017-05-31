@@ -47,5 +47,10 @@
 </table>
 <br />
 <a class="btn btn-primary" href="{{route('users.showUsers')}}"> Voltar </a> 
+@if($user->blocked == true)
+    <a class="btn btn-xs btn-success" href="{{route('users.unblock', $user)}}">Unblock</a>
+@else
+    <a class="btn btn-xs btn-danger" href="{{route('users.block', $user)}}">Block</a>
+@endif
 
 @endsection

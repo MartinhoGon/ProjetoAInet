@@ -12,7 +12,7 @@ class RequestPolicy
 	use HandlesAuthorization;
    
 
-    public function create(Pedido $authUser)
+    public function create(User $authUser)
     {
         return true;
     }
@@ -26,7 +26,5 @@ class RequestPolicy
     public function delete(Request $authUser)
     {
         return $authUser->isAdmin();
-    }
-
-    
+    }    
 }
