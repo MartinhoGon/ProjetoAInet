@@ -89,6 +89,13 @@ class UsersTableSeeder extends Seeder
         $user['password'] = bcrypt('admin123');
         $user['admin'] = true;
         DB::table('users')->insert($user);
+
+        $user = $this->fakeUser($faker, $faker->randomElement($departments));
+        $user['name'] = 'User blocked';
+        $user['email'] = 'userblock@mail.pt';
+        $user['password'] = bcrypt('block123');
+        $user['blocked'] = true;
+        DB::table('users')->insert($user);
     }
 
     private function fakeUser(Faker\Generator $faker, $departmentId)
