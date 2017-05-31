@@ -27,6 +27,8 @@ class Request extends Model
     	return $this->hasOne('App\Printer');
     }
 
+    //---------------------------------------
+
     public function typeToStr()
     {
         switch ($this->status) {
@@ -40,7 +42,6 @@ class Request extends Model
 
         return 'Unknown';
     }
-    //---------------------------------------
 
 
 }

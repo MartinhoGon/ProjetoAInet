@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Request as Pedido;
+use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
