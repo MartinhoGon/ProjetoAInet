@@ -8,9 +8,9 @@
 <table>  
     <th>
         @if(is_null($user->profile_photo))
-            <img class="img-circle" src="{{ asset('img/default.jpg'.$user->profile_photo)}}" height="200" width="200" style="box-shadow: 0px 0px 10px #888;">
+            <img src="{{ asset('img/default.jpg'.$user->profile_photo)}}" height="200" width="200" style="box-shadow: 0px 0px 10px #888; border-radius:50%;">
         @else
-            <img class="img-circle" src="{{ asset('storage/profiles/'.$user->profile_photo) }}" height="200" width="200" style="box-shadow: 0px 0px 10px #888;">
+            <img src="{{ asset('storage/profiles/'.$user->profile_photo) }}" height="200" width="200" style="box-shadow: 0px 0px 10px #888; border-radius:50%;">
         @endif
       </th>
       <th>

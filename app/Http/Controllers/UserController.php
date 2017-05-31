@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
 
-    protected $fillable = ['name','email', 'password','department_id'];
+    protected $fillable = ['name','email', 'password','department_id', 'phone', 'presentation', 'profile_url'];
 
     public function showUsers()
     {
@@ -74,7 +74,7 @@ class UserController extends Controller
         $user = User::findOrFail($id)->first();
         $user->blocked = true;
         $user->save();
-        return redirect()->route('users.showUsers');
+        return redirect()->back();
     }
 
     public function unblock(User $id)
@@ -82,7 +82,7 @@ class UserController extends Controller
         $user = User::findOrFail($id)->first();
         $user->blocked = false;
         $user->save();
-        return redirect()->route('users.showUsers');
+        return redirect()->back();
     }
 
     public function giveAdmin(User $id)
@@ -90,7 +90,7 @@ class UserController extends Controller
         $user = User::findOrFail($id)->first();
         $user->admin = true;
         $user->save();
-        return redirect()->route('users.showUsers');
+        return redirect()->back();
     }
 
     public function takeAdmin(User $id)
@@ -98,7 +98,7 @@ class UserController extends Controller
         $user = User::findOrFail($id)->first();
         $user->admin = false;
         $user->save();
-        return redirect()->route('users.showUsers');
+        return redirect()->back();
     }
 
 }

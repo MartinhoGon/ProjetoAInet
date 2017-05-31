@@ -5,11 +5,11 @@
 @section('content')
 
 @include('partials.searchDetail')
-{{-- @can('create', $requests) --}}
+{{-- @can('create', $requests)--}}
 <div>
     <a class="btn btn-primary" href="{{route('requests.create')}}">Add request</a>
 </div>
-{{-- @endcan --}}
+{{--@endcan --}}
 @if(count($requests))
  <table class="table table-striped letra">
     <thead>
@@ -23,21 +23,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($requests as $req)
+        @foreach ($requests as $request)
         <tr>
             <td></td>
-            <td>{{$req->id}}</td>
-            <td>{{$req->user->name}}</td>
-            <td>{{$req->user->department->name}}</td>
-            <td>{{$req->statusToStr()}}</td>
-            <td>{{$req->created_at}}</td>
+            <td>{{$request->id}}</td>
+            <td>{{$request->user->name}}</td>
+            <td>{{$request->user->department->name}}</td>
+            <td>{{$request->statusToStr()}}</td>
+            <td>{{$request->created_at}}</td>
+
             <td>
-            <a class="btn" href="{{route('requests.showRequest', ['request'=>$req])}}"> Ver detalhes</a> 
-            {{--@can('update', $requests) --}}
-                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $req)}}">Edit</a>
-                {{--@endcan --}}
-                {{--@can('delete', $requests) --}}
-                <form action="{{route('requests.destroy', $req)}}" method="POST" role="form" class="inline">
+            <a class="btn" href="{{route('requests.showRequest', $request)}}"> Ver detalhes</a> 
+            {{--@can('update', $requests)--}}
+                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $request)}}">Edit</a>
+                
+                {{--@can('delete', $requests)--}}
+                <form action="{{route('requests.destroy', $request)}}" method="POST" role="form" class="inline">
                     {{method_field('delete')}}
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-xs btn-danger">Delete</button>

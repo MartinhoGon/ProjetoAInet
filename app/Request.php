@@ -69,7 +69,6 @@ class Request extends Model
         return 'Unknown';
     }
 
-
     public function tamanhoFolhaToStr()
     {
         switch ($this->paper_size) {
@@ -82,7 +81,29 @@ class Request extends Model
         return 'Unknown';
     }
 
+    public function colorToStr()
+    {
+        switch ($this->colored) {
+            case 0:
+                return 'Preto e Branco';
+            case 1:
+                return 'Cor';
+        }
 
+        return 'Unknown';
+    }
+
+    public function paginacaoToStr()
+    {
+        switch ($this->front_back) {
+            case 0:
+                return 'Folha unica';
+            case 1:
+                return 'Frente e verso';
+        }
+
+        return 'Unknown';
+    }
 
 
 }

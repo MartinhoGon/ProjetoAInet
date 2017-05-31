@@ -14,8 +14,8 @@
 Route::get('/requests', 'RequestController@showRequests')->name('requests.showRequests');
 
 
-Route::get('requests/{requests}/edit', 'RequestController@edit')->name('requests.edit');
-Route::put('requests/{requests}/edit', 'RequestController@update')->name('requests.update');
+Route::get('requests/{request}/edit', 'RequestController@edit')->name('requests.edit');
+Route::put('requests/{request}/edit', 'RequestController@update')->name('requests.update');
 
 Route::post('requests/{request}/concluirPedido', 'RequestController@concluirPedido')->name('requests.concluirPedido');
 Route::post('requests/{request}/recusarPedido', 'RequestController@recusarPedido')->name('requests.recusarPedido');

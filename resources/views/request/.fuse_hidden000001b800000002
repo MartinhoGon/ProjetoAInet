@@ -11,12 +11,10 @@
           <th>Id</th>
           <th>Descrição</th>
           <th>Agrupamento de folhas</th>
-          <th>Tipo de cor</th>
+          <th>Estado</th>
           <th>Tipo Folha</th>
           <th>Tamanho Folha</th>
           <th>Quantidade</th>
-          <th>Paginação</th>
-          <th>Data do pedido</th>
       </tr>
   </thead>
   <tbody>
@@ -25,12 +23,10 @@
           <td>{{$request->id}}</td>
           <td>{{$request->description}}</td>
           <td>{{$request->stapledToStr()}}</td>
-          <td>{{$request->colorToStr()}}</td>
+          <td>{{$request->statusToStr()}}</td>
           <td>{{$request->tipoFolhaToStr()}}</td>
           <td>{{$request->tamanhoFolhaToStr()}}</td>
           <td>{{$request->quantity}}</td>
-          <td>{{$request->paginacaoToStr()}}</td>
-          <td>{{$request->created_at}}</td>
       </tr>
  </tbody> 
 </table>
