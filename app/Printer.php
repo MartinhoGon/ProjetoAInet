@@ -9,7 +9,7 @@ class Printer extends Model
 	//Establecer relações com a BD
     public function request() 
     {
-    	return $this->hasMany('App\Request',);
+    	return $this->hasMany('App\Request');
     }
 
 }

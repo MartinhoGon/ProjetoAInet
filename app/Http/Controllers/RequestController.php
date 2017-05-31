@@ -6,6 +6,7 @@ use App\Request as Pedido;
 use Illuminate\Http\Request;
 use App\Department;
 use App\User;
+use App\Printer;
 use App\Policies\RequestPolicy;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
@@ -32,7 +33,8 @@ class RequestController extends Controller
 
     public function showRequest(Pedido $request)
     {
-        return view('request.details_Request',compact('request'));
+        $printers = Printer::all();
+        return view('request.details_Request',compact('request', 'printers'));
     }
 
     public function edit(Pedido $request)

@@ -39,6 +39,12 @@
     @if($request->status == 0)
         <form action="{{route('requests.concluirPedido', $request)}}" method="post" class="form-group">
           {{csrf_field()}}
+          <select name="$request->printer_id" id="printer_id" class="form-control">
+              <option value = "0" selected disabled> Impressora usada</option>
+                  @foreach ($printers as $printer)
+                      <option  value="{{$printer->id}}">{{$printer->name}}</option>
+                  @endforeach
+          </select>
           <div class="form-group">
                   <button type="submit" class="btn-xs btn-success" name="ok">Concluir pedido</button>
           </div>
