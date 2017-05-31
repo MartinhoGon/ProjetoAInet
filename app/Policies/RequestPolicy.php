@@ -25,6 +25,6 @@ class RequestPolicy
 
     public function delete(Request $authUser)
     {
-        return $authUser->isAdmin();
+        return $authUser->isAdmin(); 
     }    
 }

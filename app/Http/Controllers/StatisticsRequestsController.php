@@ -51,7 +51,7 @@ class StatisticsRequestsController extends Controller
         Lava::DonutChart('Coloracao', $round, [
         'title' => 'Percentagem de impressões a Preto e Branco vs a Cores']);
 
-        
+             
     }
 
     //total impressoes, de impressoes por departamento, de impressores no corrente dia
@@ -87,7 +87,7 @@ class StatisticsRequestsController extends Controller
 
         //sql
        $current_timestamp = Carbon::today();
-       $initialMonthYear_timestamp = Carbon::createFromDate(null, null, 0);                                       //HEYHEYHEY timezone esta a ler errado
+       $initialMonthYear_timestamp = Carbon::createFromDate(null, null, 0);        //HEYHEYHEY timezone esta a ler errado
        $dayOfToday = Carbon::now()->day;
         
         $countTotalUntilToday =  Pedido::where('status', 1)->where('created_at', '>=', $initialMonthYear_timestamp)->where('created_at', '<=', $current_timestamp)->count();

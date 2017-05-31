@@ -71,7 +71,7 @@ class UserController extends Controller
 
     public function block(User $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($id)->first();
         $user->blocked = true;
         $user->save();
         return redirect()->route('users.showUsers');
@@ -79,8 +79,24 @@ class UserController extends Controller
 
     public function unblock(User $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($id)->first();
         $user->blocked = false;
+        $user->save();
+        return redirect()->route('users.showUsers');
+    }
+
+    public function giveAdmin(User $id)
+    {
+        $user = User::findOrFail($id)->first();
+        $user->admin = true;
+        $user->save();
+        return redirect()->route('users.showUsers');
+    }
+
+    public function takeAdmin(User $id)
+    {
+        $user = User::findOrFail($id)->first();
+        $user->admin = false;
         $user->save();
         return redirect()->route('users.showUsers');
     }

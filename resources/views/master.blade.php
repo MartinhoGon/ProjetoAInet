@@ -65,13 +65,18 @@
             </div>
             <div>
                 <ul class="nav nav-tabs">
+                @if (Auth::guest())
+                    <li>
+                        <a class="letra" href="{{route('home')}}">Home</a>
+                    </li>
+                @else
                     <li>
                         <a class="letra" href="{{route('home')}}">Home</a>
                     </li>
                     <li>
                         <a class="letra" href="{{route('requests.showRequests')}}">Pedidos</a>
-                    </li>
-                    
+                    </li>  
+                @endif                 
                 </ul>
             </div>
             </div>

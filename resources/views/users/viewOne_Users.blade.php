@@ -46,11 +46,21 @@
 
 </table>
 <br />
-<a class="btn btn-primary" href="{{route('users.showUsers')}}"> Voltar </a> 
-@if($user->blocked == true)
-    <a class="btn btn-xs btn-success" href="{{route('users.unblock', $user)}}">Unblock</a>
-@else
-    <a class="btn btn-xs btn-danger" href="{{route('users.block', $user)}}">Block</a>
+<a class="btn btn-primary" href="{{route('users.showUsers')}}"> Voltar </a>
+@if(Auth::user()->isAdmin())
+    @if($user->blocked == true)
+    <form action="{{route('users.unblock', $user)}}" method="post" class="form-group">
+        {{csrf_field()}}
+    <div class="form-group">
+            <button type="submit" class="btn-xs btn-success" name="ok">Unblock</button>
+    </div>
+    @else
+        <form action="{{route('users.block', $user)}}" method="post" class="form-group">
+        {{csrf_field()}}
+        <div class="form-group">
+                <button type="submit" class="btn-xs btn-danger" name="ok">Block</button>
+        </div>
+    @endif
 @endif
 
 @endsection

@@ -34,7 +34,6 @@
             <p><b>Descrição do Pedido:</b>
            {{$request->description}}</p>
         @endif
-
             <p><b>Data do pedido:</b>
             {{$request->created_at}}</p>
       

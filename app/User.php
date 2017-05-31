@@ -10,6 +10,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'department_id'
     ];
+    
 	//estabelcer as relações com a BD
     public function requests() 
     {

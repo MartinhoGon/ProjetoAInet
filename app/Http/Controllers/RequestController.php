@@ -13,18 +13,16 @@ use App\Http\Requests\UpdatePedidoRequest;
 
 class RequestController extends Controller
 {
-    public function showRequests()
+    public function showRequests(User $authUser)
     {
-
-    	$requests = Pedido::paginate(20);
-    	$departments = Department::all();
+        $requests = Pedido::paginate(20);
+        $departments = Department::all();
 
     	return view('request.resquestList',compact('requests', 'departments'));
     }
 
     public function showRequest(Pedido $request)
     {
-
         return view('request.details_Request', compact('request'));
     }
 
@@ -101,6 +99,7 @@ class RequestController extends Controller
         return view('request.resquestList',compact('users', 'departments'));
     }
 
+    
 
 
 }

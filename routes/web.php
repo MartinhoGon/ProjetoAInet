@@ -41,8 +41,11 @@ Route::get('/listUsers-departmentAsc', 'UserController@orderDepartment')->name('
 Route::get('/listUsers-groupDepartment', 'UserController@groupDepartment')->name('users.groupDepartment');
 
 Route::post('listUsers/{id}/block', 'UserController@block')->name('users.block');
-
 Route::post('listUsers/{id}/unblock', 'UserController@unblock')->name('users.unblock');
+
+Route::post('listUsers/{id}/giveAdmin', 'UserController@giveAdmin')->name('users.giveAdmin');
+Route::post('listUsers/{id}/takeAdmin', 'UserController@takeAdmin')->name('users.takeAdmin');
+
 //--------------department----------
 
 Route::get('/department', 'DepartmentController@showDepartments')->name('department.showDepartments');
