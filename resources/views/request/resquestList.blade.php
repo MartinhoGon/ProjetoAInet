@@ -34,10 +34,10 @@
             <td>
             <a class="btn" href="{{route('requests.showRequest', $req)}}"> Ver detalhes</a> 
             {{--@can('update', $requests) --}}
-                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $requests)}}">Edit</a>
+                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $req)}}">Edit</a>
                 {{--@endcan --}}
                 {{--@can('delete', $requests) --}}
-                <form action="{{route('requests.destroy', $requests)}}" method="POST" role="form" class="inline">
+                <form action="{{route('requests.destroy', $req)}}" method="POST" role="form" class="inline">
                     {{method_field('delete')}}
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-xs btn-danger">Delete</button>
@@ -50,6 +50,6 @@
 </table>
 <div class="pagination"> {{$requests->links()}}</div>
 @else
-    <h2>No users found</h2>
+    <h2>No requests found</h2>
 @endif
 @endsection

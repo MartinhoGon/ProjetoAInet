@@ -28,20 +28,13 @@
       <th>
       <p><b>Detalhes do pedido:</b>
 
-      @if(is_null($request->description))
-       
-       @else
-            <p><b>Descrição do Pedido:</b>
-           {{$request->description}}</p>
+      @if(!is_null($request->description))
+          <p><b>Descrição do Pedido:</b>
+          {{$request->description}}</p>
         @endif
             <p><b>Data do pedido:</b>
             {{$request->created_at}}</p>
-      
-        
-
-
-            </th>
-
+      </th>
 </table>
 <br />
 <a class="btn btn-primary" href="{{route('requests.showRequests')}}"> Voltar </a> 

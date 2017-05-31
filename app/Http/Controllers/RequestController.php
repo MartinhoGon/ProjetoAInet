@@ -14,7 +14,13 @@ use App\Http\Requests\UpdatePedidoRequest;
 class RequestController extends Controller
 {
     public function showRequests(User $authUser)
-    {
+    {   
+        //dd($authUser->id);
+        // if ($authUser->admin == 1) {
+        //     $requests = Pedido::paginate(20);
+        // }else {
+        //     $requests = Pedido::where('owner_id', 'authUser->id')->first();    
+        // }
         $requests = Pedido::paginate(20);
         $departments = Department::all();
 
@@ -23,6 +29,7 @@ class RequestController extends Controller
 
     public function showRequest(Pedido $request)
     {
+        //dd($request);
         return view('request.details_Request', compact('request'));
     }
 
@@ -99,7 +106,22 @@ class RequestController extends Controller
         return view('request.resquestList',compact('users', 'departments'));
     }
 
-    
+    public function concluirPedido(Pedido $id)
+    {
+        $request = Pedido::findOrFail($id)->first();
+        $request->status = 1;
+        $request->save();
+        return redirect()->route('requests.showRequest');
+    }
+
+    public function recusarPedido(Pedido $id)
+    {
+        $request = Pedido::findOrFail($id)->first();
+        $request->status = 2;
+        $request->save();
+        return redirect()->route('requests.showRequest');
+    }
+
 
 
 }
