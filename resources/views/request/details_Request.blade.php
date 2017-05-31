@@ -14,7 +14,6 @@
         @endif
             <p><b>Data do pedido:</b>
             {{$request->created_at}}</p>
-<<<<<<< HEAD
 
             <p><b>Numero de copias:</b>
             {{$request->quantity}}</p>
@@ -70,9 +69,7 @@
 
             </th>
 
-=======
-      </th>
->>>>>>> af6de5e4e4d72d008f8719bfa9854d25b490c969
+
 </table>
 <br>
 @if(Auth::user()->isAdmin())

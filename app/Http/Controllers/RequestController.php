@@ -108,8 +108,6 @@ class RequestController extends Controller
         return view('request.resquestList',compact('users', 'departments'));
     }
 
-<<<<<<< HEAD
-    
     public function block(User $id)
     {
         $user = User::findOrFail($id)->first();
@@ -126,8 +124,7 @@ class RequestController extends Controller
         return redirect()->back();
     }
 
-    
-=======
+
     public function concluirPedido(Pedido $request)
     {
         $request->status = 1;
@@ -142,7 +139,6 @@ class RequestController extends Controller
         return redirect()->route('requests.showRequest' , $request);
     }
 
->>>>>>> af6de5e4e4d72d008f8719bfa9854d25b490c969
 
 
 }
