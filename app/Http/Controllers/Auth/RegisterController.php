@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -79,8 +80,45 @@ class RegisterController extends Controller
         ]);
 
         return redirect()
-            ->route('home');
+            ->route('register');
     }
+
+    protected function register(Request $request)
+    {
+        $input = $request->all();
+        $validator = $this->validator($input);
+
+        if($validator->passes()){
+            $data = $this->create($input)->toArray();
+
+            $data['remember_token'] = str_random(25);
+
+            $user = User::find($data[$id]);
+            $user->remember_token = $data['remember_token'];
+            $user->save();
+
+            Mail::send('mails.confirmation', $data, function($message) use($data){
+                $message->to($data['email']);
+                $message->subject('Registration Confirmation');
+            });
+            return redirect(route('login'))->with('status', 'Confirmation email has been send. Please check your email.');
+        }
+        return redirect(route('login'))->with('status', $validator->errors);
+    }
+
+    public function confirmation($remember_token)
+    {
+        $user = User::where('remember_token', $remember_token)->first();
+
+        if(!is_null($user)){
+            $user->activated = 1;
+            $user->remember_token = '';
+            $user->save();
+            return redirect(route('login'))->with('status', 'Your activation is completed.');
+        }
+        return redirect(route('login'))->with('status', 'Something went wrong.');
+    }
+
 
     
 

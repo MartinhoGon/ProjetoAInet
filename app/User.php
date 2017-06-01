@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     protected $fillable = [
-        'name', 'email', 'password', 'department_id'
+        'name', 'email', 'password', 'department_id', 'activated'
     ];
     
 	//estabelcer as relações com a BD
