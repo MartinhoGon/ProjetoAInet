@@ -11,7 +11,7 @@
 |
 */
 //---------Request-----------------
-Route::get('/requests', 'RequestController@showRequests')->name('requests.showRequests');
+Route::get('/requests/{user}', 'RequestController@showRequests')->name('requests.showRequests');
 
 
 Route::get('requests/{request}/edit', 'RequestController@edit')->name('requests.edit');
@@ -43,11 +43,11 @@ Route::get('/listUsers-nameAsc', 'UserController@orderName')->name('users.orderN
 Route::get('/listUsers-departmentAsc', 'UserController@orderDepartment')->name('users.orderDepartment');
 Route::get('/listUsers-groupDepartment', 'UserController@groupDepartment')->name('users.groupDepartment');
 
-Route::post('listUsers/{id}/block', 'UserController@block')->name('users.block');
-Route::post('listUsers/{id}/unblock', 'UserController@unblock')->name('users.unblock');
+Route::post('listUsers/{user}/block', 'UserController@block')->name('users.block');
+Route::post('listUsers/{user}/unblock', 'UserController@unblock')->name('users.unblock');
 
-Route::post('listUsers/{id}/giveAdmin', 'UserController@giveAdmin')->name('users.giveAdmin');
-Route::post('listUsers/{id}/takeAdmin', 'UserController@takeAdmin')->name('users.takeAdmin');
+Route::post('listUsers/{user}/giveAdmin', 'UserController@giveAdmin')->name('users.giveAdmin');
+Route::post('listUsers/{user}/takeAdmin', 'UserController@takeAdmin')->name('users.takeAdmin');
 
 //--------------department----------
 

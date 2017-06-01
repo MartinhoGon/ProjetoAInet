@@ -19,16 +19,15 @@ class RequestController extends Controller
 
     public function showRequests(User $authUser)
     {   
-        //dd($authUser->id);
-        // if ($authUser->admin == 1) {
-        //     $requests = Pedido::paginate(20);
-        // }else {
-        //     $requests = Pedido::where('owner_id', 'authUser->id')->first();    
-        // }
-        $requests = Pedido::paginate(20);
-        $departments = Department::all();
+        dd($authUser);
+        if ($authUser->isAdmin()) {
+            $requests = Pedido::paginate(20);
+            $departments = Department::all();
+        } else {
+            dd("User normal");
+        }
 
-    	return view('request.resquestList',compact('requests', 'departments'));
+        return view('request.resquestList',compact('requests', 'departments'));
     }
 
     public function showRequest(Pedido $request)
@@ -78,6 +77,7 @@ class RequestController extends Controller
 
     public function store(StorePedidoRequest $requests)
     {
+        dd($requests);
         $this->authorize('create', Pedido::class);
         $requests = new Pedido;
         $requests->fill($requests->all());
@@ -108,22 +108,6 @@ class RequestController extends Controller
         $users = User::groupBy('department_id')->paginate(20);
         $departments = Department::all();
         return view('request.resquestList',compact('users', 'departments'));
-    }
-
-    public function block(User $id)
-    {
-        $user = User::findOrFail($id)->first();
-        $user->blocked = true;
-        $user->save();
-        return redirect()->back();
-    }
-
-    public function unblock(User $id)
-    {
-        $user = User::findOrFail($id)->first();
-        $user->blocked = false;
-        $user->save();
-        return redirect()->back();
     }
 
 

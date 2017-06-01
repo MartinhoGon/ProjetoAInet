@@ -53,4 +53,3 @@
         name="file" id="inputFoto"
         placeholder="File" value="{{old('file', $requests->file)}}" />
 </div>       
-requests

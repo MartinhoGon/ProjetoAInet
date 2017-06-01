@@ -69,33 +69,29 @@ class UserController extends Controller
         return view('users.listUsers',compact('users', 'departments'));
     }
 
-    public function block(User $id)
-    {
-        $user = User::findOrFail($id)->first();
+    public function block(User $user)
+    {     
         $user->blocked = true;
         $user->save();
         return redirect()->back();
     }
 
-    public function unblock(User $id)
+    public function unblock(User $user)
     {
-        $user = User::findOrFail($id)->first();
         $user->blocked = false;
         $user->save();
         return redirect()->back();
     }
 
-    public function giveAdmin(User $id)
+    public function giveAdmin(User $user)
     {
-        $user = User::findOrFail($id)->first();
         $user->admin = true;
         $user->save();
         return redirect()->back();
     }
 
-    public function takeAdmin(User $id)
+    public function takeAdmin(User $user)
     {
-        $user = User::findOrFail($id)->first();
         $user->admin = false;
         $user->save();
         return redirect()->back();
