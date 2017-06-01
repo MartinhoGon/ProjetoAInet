@@ -75,6 +75,8 @@ class RequestController extends Controller
             ->with('success', 'Request added successfully');
     }
 
+    
+
     public function orderName()
     {
         $requests = Pedido::orderBy('owner_id->name', 'asc')->paginate(20);

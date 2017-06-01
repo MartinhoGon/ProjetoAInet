@@ -11,7 +11,11 @@
 |
 */
 //---------Request-----------------
+<<<<<<< HEAD
 Route::get('/requests', 'RequestController@showRequests')->name('requests.showRequests');
+=======
+Route::get('/user-requests/{user}', 'RequestController@showRequests')->name('requests.showRequests');
+>>>>>>> 4014f4454a2ca8d547f15d4e57719042c2230732
 
 
 Route::get('requests/{request}/edit', 'RequestController@edit')->name('requests.edit');
@@ -29,7 +33,7 @@ Route::get('/requests-nameAsc', 'RequestController@orderName')->name('requests.o
 Route::get('/requests-departmentAsc', 'RequestController@orderDepartment')->name('requests.orderDepartment');
 Route::get('/requests-groupDepartment', 'RequestController@groupDepartment')->name('requests.groupDepartment');
 
-Route::get('/requests/{request}', 'RequestController@showRequest')->name('requests.showRequest');
+Route::get('/show-requests/{request}', 'RequestController@showRequest')->name('requests.showRequest');
 
 //-----------users----------------
 
