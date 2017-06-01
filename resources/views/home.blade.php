@@ -8,6 +8,7 @@
         <text> As nossas estatísticas</text>
 
         <form action="{{route('home')}}" method="post" class="form-group">
+            {{csrf_field()}}
             <div class="formSpecificDep">
                     <select name="department_id" id="department_id" class="form-control">
                          <!-- escolher departamento para estatistica -->
@@ -17,6 +18,7 @@
                             @endforeach
                     </select>
             </div>
+              <button type="submit" class="btn"> Ver </button>
         </form>
 
         <div class="formAllDep">
