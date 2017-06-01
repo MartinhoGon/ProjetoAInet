@@ -81,3 +81,4 @@ Route::post('/create', 'Auth\RegisterController@create')->name('create');
 Route::get('/', function () {
     return redirect()->route('home');
 });
+

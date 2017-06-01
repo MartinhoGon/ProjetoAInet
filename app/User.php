@@ -37,4 +37,9 @@ class User extends Authenticatable
         return (int) $this->admin === 0;
     }
 
+    public function blocked()
+    {
+        return (int) $this->blocked === 0;
+    }
+
 }

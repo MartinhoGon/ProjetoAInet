@@ -77,6 +77,17 @@ class RequestController extends Controller
             ->with('success', 'Request added successfully');
     }
 
+    public function destroy(Request $request)
+    {
+        $this->authorize('delete', $request);
+
+        $request->delete();
+
+        return redirect()
+            ->route('requests.showRequests')
+            ->with('success', 'Request deleted successfully');
+    }
+
     
 
     public function orderName()
