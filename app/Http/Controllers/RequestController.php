@@ -135,9 +135,10 @@ class RequestController extends Controller
         return redirect()->route('requests.showRequest',$request);
     }
 
-    public function recusarPedido(Pedido $request)
+    public function recusarPedido(Pedido $request, Request $req)
     {
         $request->status = 2;
+        $request->refused_reason = $req->refused_reason;
         $request->save();
         return redirect()->route('requests.showRequest' , $request);
     }

@@ -31,7 +31,7 @@ class UpdatePedidoRequest extends FormRequest
             'colored' => 'required|between:0,1',
             'stapled' => 'required|between:0,1',
             'front_back' => 'required|between:0,1',
-            'description' => 'required|alpha_dash',
+            //'description' => 'alpha_dash',
             'due_date' => 'required|date'
         ];
     }
