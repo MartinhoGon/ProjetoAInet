@@ -23,6 +23,9 @@ class RequestPolicy
         return $authUser->isAdmin() || $authUser->id == $request->owner_id;
     }
 
-    
+    public function canEvaluate (User $authUser, Request $request) //concluido e o pedido é dele próprio
+    {
+        return $request->status == 1 &&  $authUser->id == $request->owner_id;
+    }
 
 }

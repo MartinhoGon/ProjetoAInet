@@ -13,7 +13,7 @@
     @include('request.add-edit_Request')
     <div class="form-group">
         <button type="submit" class="btn btn-success" name="ok">Save</button>
-        <a href="{{route('requests.showRequests')}}" class="btn btn-default" name="cancel">Cancel</a>
+        <a href="{{route('requests.showRequests', Auth::user())}}" class="btn btn-default" name="cancel">Cancel</a>
     </div>
 </form>
 @endsection

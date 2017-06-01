@@ -10,6 +10,7 @@ use App\Printer;
 use App\Policies\RequestPolicy;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
+use Auth;
 
 
 class RequestController extends Controller
@@ -29,18 +30,18 @@ class RequestController extends Controller
         return view('request.resquestList',compact('requests', 'departments'));
     }
 
+
     public function showRequest(Pedido $request)
     {
         $printers = Printer::all();
         return view('request.details_Request',compact('request', 'printers'));
     }
 
-    public function edit(Pedido $request)
+    public function edit(Pedido $requests)
     {
-
-        $this->authorize('update', $request);
+        $this->authorize('update', $requests);
         $departments = Department::all();
-        return view('request.edit_Request', compact('request', 'departments'));
+        return view('request.edit_Request', compact('requests', 'departments'));
     }
 
 
@@ -66,14 +67,15 @@ class RequestController extends Controller
 
     public function store(StorePedidoRequest $requests)
     {
-        dd($requests);
         $this->authorize('create', Pedido::class);
-        $requests = new Pedido;
-        $requests->fill($requests->all());
-        $requests->save();
-
+        $request = new Pedido;
+        $request->owner_id = Auth::user()->id;
+        $request->status = 0;
+        $request->fill($requests->all());
+        $request->file = " ";
+        $request->save();
         return redirect()
-            ->route('requests.showRequests')
+            ->route('requests.showRequests', Auth::user())
             ->with('success', 'Request added successfully');
     }
 
@@ -127,6 +129,13 @@ class RequestController extends Controller
         $request->refused_reason = $req->refused_reason;
         $request->save();
         return redirect()->route('requests.showRequest' , $request);
+    }
+
+        public function concluirAvaliacao(Pedido $request, Request $req)
+    {
+        $request->satisfaction_grade = $req->satisfaction_grade;
+        $request->save();
+        return redirect()->route('requests.showRequest',$request);
     }
 
 }

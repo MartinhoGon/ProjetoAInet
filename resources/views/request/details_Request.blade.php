@@ -74,14 +74,37 @@
         </form>
     @endif
 @endif
-<a class="btn btn-primary" href="{{route('requests.showRequests', Auth::user())}}"> Voltar </a> 
+@if(is_null($request->satisfaction_grade))
+@if(Auth::user()->id == $request->owner_id)
+    @if($request->status == 1)
+        <form action="{{route('requests.concluirAvaliacao', $request)}}" method="post" class="form-group">
+          {{csrf_field()}}
+          <div class="form-group">
+            <select name="satisfaction_grade" id="satisfaction_grade" class="form-control">
+              <option value = "1" selected> 1 - Mau</option>
+                  <option value = "2" selected> 2 - Suficiente</option>
+                  <option value = "3" selected> 3 - Bom</option>
+            </select>
+          </div>
+          <div class="form-group">
+                  <button type="submit" class="btn-xs btn-success" name="ok">Avaliar</button>
+          </div>
+        </form>
 
-<div class="form-group">
+   @endif
+ @endif
+ @else
+ <text> Já foi avaliado em {{$request->satisfaction_grade}} numa escala de 1 a 3. </text>
+ @endif
+        <div class="form-group">
               <label for="inputDescription">Comments:</label>
               <input
                   type="text" class="form-control"
                   name="refused_reason" id="inputMotivo"
                   placeholder="Motivo"/>
-          </div>
+        </div>
 
+
+        <a class="btn btn-primary" href="{{route('requests.showRequests', Auth::user())}}"> Voltar </a> 
 @endsection
+
