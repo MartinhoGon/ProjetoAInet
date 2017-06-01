@@ -8,7 +8,7 @@ class Request extends Model
 {
     
     protected $fillable = [
-        'quantity', 'paper_size', 'paper_type', 'file', 'colored', 'stapled', 'front_back'
+        'quantity', 'paper_size', 'paper_type', 'colored', 'stapled', 'front_back', 'description'
     ];
 
 	//Establecer relações com a BD

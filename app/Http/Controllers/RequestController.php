@@ -10,6 +10,7 @@ use App\Printer;
 use App\Policies\RequestPolicy;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
+use Auth;
 
 
 class RequestController extends Controller
@@ -66,14 +67,15 @@ class RequestController extends Controller
 
     public function store(StorePedidoRequest $requests)
     {
-        dd($requests);
         $this->authorize('create', Pedido::class);
-        $requests = new Pedido;
-        $requests->fill($requests->all());
-        $requests->save();
-
+        $request = new Pedido;
+        $request->owner_id = Auth::user()->id;
+        $request->status = 0;
+        $request->fill($requests->all());
+        $request->file = " ";
+        $request->save();
         return redirect()
-            ->route('requests.showRequests')
+            ->route('requests.showRequests', Auth::user())
             ->with('success', 'Request added successfully');
     }
 
