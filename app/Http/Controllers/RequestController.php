@@ -36,12 +36,11 @@ class RequestController extends Controller
         return view('request.details_Request',compact('request', 'printers'));
     }
 
-    public function edit(Pedido $request)
+    public function edit(Pedido $requests)
     {
-
-        $this->authorize('update', $request);
+        $this->authorize('update', $requests);
         $departments = Department::all();
-        return view('request.edit_Request', compact('request', 'departments'));
+        return view('request.edit_Request', compact('requests', 'departments'));
     }
 
 
