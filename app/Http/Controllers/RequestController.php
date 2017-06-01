@@ -17,12 +17,14 @@ class RequestController extends Controller
 
     protected $fillable = ['description','quantity'];
 
-    public function showRequests(User $authUser)
-    {   
-        
+    public function showRequests(User $user)
+    {  
+        if ($user->isAdmin()) {
             $requests = Pedido::paginate(20);
-            $departments = Department::all();
-        
+        } else {
+            $requests = Pedido::where("owner_id",$user->id)->paginate(20);
+        }      
+        $departments = Department::all();        
 
         return view('request.resquestList',compact('requests', 'departments'));
     }

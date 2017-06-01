@@ -11,12 +11,7 @@
 |
 */
 //---------Request-----------------
-<<<<<<< HEAD
-Route::get('/requests', 'RequestController@showRequests')->name('requests.showRequests');
-=======
 Route::get('/user-requests/{user}', 'RequestController@showRequests')->name('requests.showRequests');
->>>>>>> 4014f4454a2ca8d547f15d4e57719042c2230732
-
 
 Route::get('requests/{request}/edit', 'RequestController@edit')->name('requests.edit');
 Route::put('requests/{request}/edit', 'RequestController@update')->name('requests.update');
