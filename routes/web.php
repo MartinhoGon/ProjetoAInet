@@ -11,7 +11,7 @@
 |
 */
 //---------Request-----------------
-Route::get('/requests/{user}', 'RequestController@showRequests')->name('requests.showRequests');
+Route::get('/user-requests/{user}', 'RequestController@showRequests')->name('requests.showRequests');
 
 
 Route::get('requests/{request}/edit', 'RequestController@edit')->name('requests.edit');
@@ -29,7 +29,7 @@ Route::get('/requests-nameAsc', 'RequestController@orderName')->name('requests.o
 Route::get('/requests-departmentAsc', 'RequestController@orderDepartment')->name('requests.orderDepartment');
 Route::get('/requests-groupDepartment', 'RequestController@groupDepartment')->name('requests.groupDepartment');
 
-Route::get('/requests/{request}', 'RequestController@showRequest')->name('requests.showRequest');
+Route::get('/show-requests/{request}', 'RequestController@showRequest')->name('requests.showRequest');
 
 //-----------users----------------
 

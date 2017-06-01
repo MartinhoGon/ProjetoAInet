@@ -74,6 +74,6 @@
         </form>
     @endif
 @endif
-<a class="btn btn-primary" href="{{route('requests.showRequests')}}"> Voltar </a> 
+<a class="btn btn-primary" href="{{route('requests.showRequests', Auth::user())}}"> Voltar </a> 
 
 @endsection
