@@ -56,7 +56,6 @@ Route::get('/department', 'DepartmentController@showDepartments')->name('departm
 
 //----------Statistics home-------------
 Route::post('/home','StatisticsRequestsController@showStatistics') ->name('home');
-
 Route::get('/home','StatisticsRequestsController@showStatistics') ->name('home');
 
 
