@@ -47,7 +47,7 @@
 </table>
 <br />
 <a class="btn btn-primary" href="{{route('users.showUsers')}}"> Voltar </a>
-@if(Auth::user()->isAdmin())
+@if(Auth::check() && Auth::user()->is('admin'))
     @if($user->blocked == true)
     <form action="{{route('users.unblock', $user)}}" method="post" class="form-group">
         {{csrf_field()}}

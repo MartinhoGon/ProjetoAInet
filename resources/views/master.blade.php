@@ -14,18 +14,6 @@
                 <div class="jumbotron">    
                     <h1 class="letraTitulo">PrintIt</h1>
                 </div>
-                <!--<ul class="nav nav-pills pull-right">
-                    
-                    <li>
-                        <a class="letra" href="{{route('logout')}}">Log Out</a>
-                    </li>
-                    <li>
-                        <a class="letra" href="{{route('login')}}">Log In</a>
-                    </li>
-                    <li>
-                        <a class="letra" href="{{route('register')}}">Registar</a>
-                    </li>
-                </ul>-->
                 <ul class="nav nav-pills pull-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
