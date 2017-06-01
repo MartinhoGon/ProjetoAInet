@@ -13,13 +13,6 @@ use DB;
 class StatisticsRequestsController extends Controller
 {
 
- /* public function receiveValue(Request $req)
-  {
-
-      $id = $req->department_id;
-  }*/
-
-
     public function showStatistics(Request $req)
     {
 
