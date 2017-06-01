@@ -72,33 +72,14 @@ class RequestController extends Controller
         $request->owner_id = Auth::user()->id;
         $request->status = 0;
         $request->fill($requests->all());
-        $name = Self::saveFile($request,$requests);
-        $request->file = $name;
+        $request->file = " ";
         $request->save();
         return redirect()
             ->route('requests.showRequests', Auth::user())
             ->with('success', 'Request added successfully');
     }
 
-    public function saveFile($request, $requests)
-    {
-        $name = $request->owner_id."-".time()."-ficheiro";
-        $filepath = "print-jobs/$request->owner_id";
-
-        $requests->file->storeAs($filepath,$name,'local');
-        return $name;
-    }
-
-    public function destroy(Request $request)
-    {
-        $this->authorize('delete', $request);
-
-        $request->delete();
-
-        return redirect()
-            ->route('requests.showRequests')
-            ->with('success', 'Request deleted successfully');
-    }
+    
 
     public function orderName()
     {
@@ -139,7 +120,7 @@ class RequestController extends Controller
         return redirect()->route('requests.showRequest' , $request);
     }
 
-    public function concluirAvaliacao(Pedido $request, Request $req)
+        public function concluirAvaliacao(Pedido $request, Request $req)
     {
         $request->satisfaction_grade = $req->satisfaction_grade;
         $request->save();
