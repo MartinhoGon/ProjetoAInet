@@ -19,13 +19,10 @@ class RequestController extends Controller
 
     public function showRequests(User $authUser)
     {   
-        dd($authUser);
-        if ($authUser->isAdmin()) {
+        
             $requests = Pedido::paginate(20);
             $departments = Department::all();
-        } else {
-            dd("User normal");
-        }
+        
 
         return view('request.resquestList',compact('requests', 'departments'));
     }
@@ -47,26 +44,16 @@ class RequestController extends Controller
 
     public function update(UpdatePedidoRequest $requests, Request $request)
     {
-        $this->authorize('update', $requests);
+        $this->authorize('update', $request);
        
         
-        $requests->fill($requests->all());
-        $requests->save();
+        $requestss->fill($requests->all());
+        $requestss->save();
         return redirect()
             ->route('requests.showRequests')
             ->with('success', 'Request saved successfully');
     }
 
-    public function destroy(Pedido $request)
-    {
-        $this->authorize('delete', $request);
-
-        $request->delete();
-
-        return redirect()
-            ->route('requests.showRequests')
-            ->with('success', 'Request deleted successfully');
-    }
 
     public function create()
     {

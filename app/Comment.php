@@ -16,4 +16,9 @@ class Comment extends Model
     {
     	return $this->belongsTo('App\Request', 'request_id', 'id');
     }
+
+    public function comment()
+    {
+    	return $this->belongsTo('App\Comment', 'parent_id');
+    }
 }

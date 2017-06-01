@@ -76,4 +76,12 @@
 @endif
 <a class="btn btn-primary" href="{{route('requests.showRequests')}}"> Voltar </a> 
 
+<div class="form-group">
+              <label for="inputDescription">Comments:</label>
+              <input
+                  type="text" class="form-control"
+                  name="refused_reason" id="inputMotivo"
+                  placeholder="Motivo"/>
+          </div>
+
 @endsection

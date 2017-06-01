@@ -2,8 +2,7 @@
 
 namespace App\Policies;
 
-use App\Request as Pedido;
-use Illuminate\Http\Request;
+use App\Request;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -18,14 +17,12 @@ class RequestPolicy
         return true;
     }
 
-    public function update(Request $authUser, User $user)
+    public function update(User $authUser, Request $request)
     {
         
-        return $authUser->isAdmin() || $authUser->id == $user->id;
+        return $authUser->isAdmin() || $authUser->id == $request->owner_id;
     }
 
-    public function delete(Request $authUser)
-    {
-        return $authUser->isAdmin(); 
-    }    
+    
+
 }

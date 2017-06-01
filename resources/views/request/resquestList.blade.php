@@ -34,16 +34,16 @@
 
             <td>
             <a class="btn" href="{{route('requests.showRequest', $request)}}"> Ver detalhes</a> 
-            {{--@can('update', $requests)--}}
-                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $request)}}">Edit</a>
-                
-                {{--@can('delete', $requests)--}}
+            @can('update', $request)
+                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', [$request, Auth::user()])}}">Edit</a>
+                @endcan
+            @can('delete', $request)
                 <form action="{{route('requests.destroy', $request)}}" method="POST" role="form" class="inline">
                     {{method_field('delete')}}
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-xs btn-danger">Delete</button>
                 </form>
-                {{--@endcan --}}
+            @endcan 
                 
             </td>
         </tr>

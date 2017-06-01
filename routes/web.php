@@ -11,7 +11,7 @@
 |
 */
 //---------Request-----------------
-Route::get('/requests/{user}', 'RequestController@showRequests')->name('requests.showRequests');
+Route::get('/requests', 'RequestController@showRequests')->name('requests.showRequests');
 
 
 Route::get('requests/{request}/edit', 'RequestController@edit')->name('requests.edit');
