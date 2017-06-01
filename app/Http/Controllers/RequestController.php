@@ -30,6 +30,7 @@ class RequestController extends Controller
         return view('request.resquestList',compact('requests', 'departments'));
     }
 
+
     public function showRequest(Pedido $request)
     {
         $printers = Printer::all();
@@ -117,6 +118,13 @@ class RequestController extends Controller
         $request->refused_reason = $req->refused_reason;
         $request->save();
         return redirect()->route('requests.showRequest' , $request);
+    }
+
+        public function concluirAvaliacao(Pedido $request, Request $req)
+    {
+        $request->satisfaction_grade = $req->satisfaction_grade;
+        $request->save();
+        return redirect()->route('requests.showRequest',$request);
     }
 
 }

@@ -30,6 +30,8 @@ Route::get('/requests-groupDepartment', 'RequestController@groupDepartment')->na
 
 Route::get('/show-requests/{request}', 'RequestController@showRequest')->name('requests.showRequest');
 
+Route::post('requests/{request}/concluirAvaliacao', 'RequestController@concluirAvaliacao')->name('requests.concluirAvaliacao');
+
 //-----------users----------------
 
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit');
