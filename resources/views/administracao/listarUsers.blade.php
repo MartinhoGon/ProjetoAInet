@@ -21,7 +21,7 @@
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
             <td>
-            @if(Auth::user()->isAdmin())
+            @if(Auth::check() && Auth::user()->isAdmin())
                 @if($user->blocked == true)
                     <form action="{{route('users.unblock', $user)}}" method="post" class="form-group">
                         {{csrf_field()}}

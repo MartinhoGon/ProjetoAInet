@@ -11,7 +11,7 @@
 |
 */
 //---------Request-----------------
-Route::get('/user-requests/{user}', 'RequestController@showRequests')->name('requests.showRequests');
+Route::get('/user-requests/{user}', 'RequestController@showRequests')->name('requests.showRequests')->middleware('checkUser');
 
 Route::get('requests/{request}/edit', 'RequestController@edit')->name('requests.edit');
 Route::put('requests/{request}/edit', 'RequestController@update')->name('requests.update');
@@ -64,12 +64,11 @@ Route::get('/home','StatisticsRequestsController@showStatistics') ->name('home')
 
 //----------administracao----------------
 
-Route::get('/administracao/Users-block', 'AdministradorController@usersBlock')->name('users.usersBlock');
-Route::get('/administracao/Users-unblock', 'AdministradorController@usersUnblock')->name('users.usersUnblock');
-Route::get('/administracao/Pedidos', 'AdministradorController@pedidos')->name('requests.pedidos');
-Route::get('/administracao/Comments-block', 'AdministradorController@commentsBlock')->name('comments.commentsBlock');
-Route::get('/administracao/Comments-unblock', 'AdministradorController@commentsUnblock')->name('comments.commentsUnblock');
-
+Route::get('/administracao/Users-block', 'AdministradorController@usersBlock')->name('users.usersBlock')->middleware('checkedAdmin');
+Route::get('/administracao/Users-unblock', 'AdministradorController@usersUnblock')->name('users.usersUnblock')->middleware('checkedAdmin');;
+Route::get('/administracao/Pedidos', 'AdministradorController@pedidos')->name('requests.pedidos')->middleware('checkedAdmin');;
+Route::get('/administracao/Comments-block', 'AdministradorController@commentsBlock')->name('comments.commentsBlock')->middleware('checkedAdmin');;
+Route::get('/administracao/Comments-unblock', 'AdministradorController@commentsUnblock')->name('comments.commentsUnblock')->middleware('checkedAdmin');; 
 
 
 
