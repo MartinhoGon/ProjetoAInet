@@ -21,7 +21,7 @@ class RequestPolicy
     public function update(User $authUser, Request $request)
     {
         
-        return Auth::user()->isAdmin() || Auth::user()->id == $request->owner_id;
+        return $authUser->isAdmin() || $authUser->id == $request->owner_id;
     }
 
     public function canEvaluate (User $authUser, Request $request) //concluido e o pedido é dele próprio
