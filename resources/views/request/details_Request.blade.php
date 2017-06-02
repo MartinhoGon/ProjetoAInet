@@ -14,6 +14,7 @@
             <th>Motivo</th>
           @endif
           <th>Descrição</th>
+          <th>Ficheiro</th>
           <th>Agrupamento de folhas</th>
           <th>Tipo de cor</th>
           <th>Tipo Folha</th>
@@ -32,6 +33,7 @@
             <td>{{$request->refused_reason}}</td>
           @endif
           <td>{{$request->description}}</td>
+          <td><a href="{{route('requests.downloadFile', $request)}}"> {{$request->file}} </a> </td>
           <td>{{$request->stapledToStr()}}</td>
           <td>{{$request->colorToStr()}}</td>
           <td>{{$request->tipoFolhaToStr()}}</td>

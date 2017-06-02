@@ -32,6 +32,9 @@ Route::get('/show-requests/{request}', 'RequestController@showRequest')->name('r
 
 Route::post('requests/{request}/concluirAvaliacao', 'RequestController@concluirAvaliacao')->name('requests.concluirAvaliacao');
 
+Route::get('/show-requests/{request}/downloadFile', 'RequestController@downloadFile')->name('requests.downloadFile');
+
+
 //-----------users----------------
 
 Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit');

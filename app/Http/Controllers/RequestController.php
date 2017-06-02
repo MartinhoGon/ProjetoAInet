@@ -89,6 +89,12 @@ class RequestController extends Controller
         return $name;
     }
 
+    public function downloadFile(Pedido $request)
+    {
+        $filename = $request->file;
+        return response()->download(storage_path("print-jobs/$request->owner_id/{$filename}"));
+    }
+    
     public function destroy(Request $request)
     {
         $this->authorize('delete', $request);
