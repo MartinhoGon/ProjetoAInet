@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Request;
 use App\User;
+use Auth;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RequestPolicy
@@ -20,7 +21,7 @@ class RequestPolicy
     public function update(User $authUser, Request $request)
     {
         
-        return $authUser->isAdmin() || $authUser->id == $request->owner_id;
+        return Auth::user()->isAdmin() || Auth::user()->id == $request->owner_id;
     }
 
     public function canEvaluate (User $authUser, Request $request) //concluido e o pedido é dele próprio

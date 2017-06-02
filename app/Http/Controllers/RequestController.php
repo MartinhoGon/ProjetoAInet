@@ -39,7 +39,7 @@ class RequestController extends Controller
 
     public function edit(Pedido $requests)
     {
-        $this->authorize('update', $requests);
+        //$this->authorize('update', $requests);
         $departments = Department::all();
         return view('request.edit_Request', compact('requests', 'departments'));
     }
@@ -48,8 +48,6 @@ class RequestController extends Controller
     public function update(UpdatePedidoRequest $requests, Request $request)
     {
         $this->authorize('update', $request);
-       
-        
         $requestss->fill($requests->all());
         $requestss->save();
         return redirect()

@@ -36,7 +36,7 @@
             <a class="btn" href="{{route('requests.showRequest', $request)}}"> Ver detalhes</a> 
             @can('update', $request)
                 <a class="btn btn-xs btn-primary" href="{{route('requests.edit', [$request, Auth::user()])}}">Edit</a>
-                @endcan
+            @endcan
             @can('delete', $request)
                 <form action="{{route('requests.destroy', $request)}}" method="POST" role="form" class="inline">
                     {{method_field('delete')}}

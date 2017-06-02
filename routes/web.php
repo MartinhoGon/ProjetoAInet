@@ -11,7 +11,7 @@
 |
 */
 //---------Request-----------------
-Route::get('/user-requests/{user}', 'RequestController@showRequests')->name('requests.showRequests')->middleware('checkUser');
+Route::get('/user-requests/{user}', 'RequestController@showRequests')->name('requests.showRequests');//->middleware('checkUser');
 
 Route::get('requests/{request}/edit', 'RequestController@edit')->name('requests.edit');
 Route::put('requests/{request}/edit', 'RequestController@update')->name('requests.update');
