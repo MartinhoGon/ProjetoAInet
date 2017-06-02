@@ -97,12 +97,16 @@
  <text> Já foi avaliado em {{$request->satisfaction_grade}} numa escala de 1 a 3. </text>
  @endif
         <div class="form-group">
-              <label for="inputDescription">Comments:</label>
+              <label for="inputComment">Comments:</label>
               <input
                   type="text" class="form-control"
-                  name="refused_reason" id="inputMotivo"
-                  placeholder="Motivo"/>
+                  name="comment" id="inputComment"
+                  placeholder="Comment"/>
         </div>
+
+        @foreach ($comments as $comment)
+          <td>{{$comment->comment}}</td>
+        @endforeach
 
 
         <a class="btn btn-primary" href="{{route('requests.showRequests', Auth::user())}}"> Voltar </a> 
