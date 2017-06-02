@@ -5,11 +5,11 @@
 @section('content')
 
 @include('partials.searchDetail')
-{{-- @can('create', $requests)--}}
+@can('create', $requests)
 <div>
     <a class="btn btn-primary" href="{{route('requests.create')}}">Add request</a>
 </div>
-{{--@endcan --}}
+@endcan
 @if(count($requests))
  <table class="table table-striped letra">
     <thead>
@@ -34,8 +34,9 @@
 
             <td>
             <a class="btn" href="{{route('requests.showRequest', $request)}}"> Ver detalhes</a> 
+            @if($request->status == 0)
             @can('update', $request)
-                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', [$request, Auth::user()])}}">Edit</a>
+                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $request)}}">Edit</a>
                 @endcan
             @can('delete', $request)
                 <form action="{{route('requests.destroy', $request)}}" method="POST" role="form" class="inline">
@@ -44,6 +45,7 @@
                     <button type="submit" class="btn btn-xs btn-danger">Delete</button>
                 </form>
             @endcan 
+            @endif
                 
             </td>
         </tr>

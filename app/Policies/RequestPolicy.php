@@ -28,4 +28,9 @@ class RequestPolicy
         return $request->status == 1 &&  $authUser->id == $request->owner_id;
     }
 
+    public function delete (User $authUser, Request $request)
+    {
+        return $authUser->isAdmin() || $authUser->id == $request->owner_id;
+    }
+
 }
