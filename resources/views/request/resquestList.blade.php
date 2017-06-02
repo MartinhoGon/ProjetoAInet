@@ -37,21 +37,18 @@
             <td>
             <a class="btn" href="{{route('requests.showRequest', $request)}}"> Ver detalhes</a> 
             @if($request->status == 0)
-            @can('update', $request)
-<<<<<<< HEAD
-                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', [$request, Auth::user()])}}">Edit</a>
-            @endcan
-=======
-                <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $request)}}">Edit</a>
+                @can('update', $request)
+                    <!-- <a class="btn btn-xs btn-primary" href="{{route('requests.edit', [$request, Auth::user()])}}">Edit</a>
+                @endcan -->
+                    <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $request)}}">Edit</a>
                 @endcan
->>>>>>> 5e4baa2fadc21be13d3f59cd3bcb58d3ac440511
-            @can('delete', $request)
-                <form action="{{route('requests.destroy', $request)}}" method="POST" role="form" class="inline">
-                    {{method_field('delete')}}
-                    {{csrf_field()}}
-                    <button type="submit" class="btn btn-xs btn-danger">Delete</button>
-                </form>
-            @endcan 
+                @can('delete', $request)
+                    <form action="{{route('requests.destroy', $request)}}" method="POST" role="form" class="inline">
+                        {{method_field('delete')}}
+                        {{csrf_field()}}
+                        <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                    </form>
+                @endcan 
             @endif
                 
             </td>
