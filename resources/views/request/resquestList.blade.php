@@ -5,11 +5,13 @@
 @section('content')
 
 @include('partials.searchDetail')
-@can('create', $requests)
+
+@can('create', App\Request::class)
 <div>
     <a class="btn btn-primary" href="{{route('requests.create')}}">Add request</a>
 </div>
 @endcan
+
 @if(count($requests))
  <table class="table table-striped letra">
     <thead>
@@ -52,7 +54,9 @@
         @endforeach
 </table>
 <div class="pagination"> {{$requests->links()}}</div>
+
 @else
     <h2>No requests found</h2>
 @endif
+
 @endsection

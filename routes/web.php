@@ -19,7 +19,7 @@ Route::put('requests/{request}/edit', 'RequestController@update')->name('request
 Route::post('requests/{request}/concluirPedido', 'RequestController@concluirPedido')->name('requests.concluirPedido');
 Route::post('requests/{request}/recusarPedido', 'RequestController@recusarPedido')->name('requests.recusarPedido');
 
-Route::delete('requests/delete', 'RequestController@destroy')->name('requests.destroy');
+Route::delete('requests/{request}', 'RequestController@destroy')->name('requests.destroy');
 
 Route::get('requests/create', 'RequestController@create')->name('requests.create');
 Route::post('requests/create', 'RequestController@store')->name('requests.store');

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Department;
 use App\User;
 use App\Printer;
+use App\Comment;
 use App\Policies\RequestPolicy;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
@@ -34,7 +35,8 @@ class RequestController extends Controller
     public function showRequest(Pedido $request)
     {
         $printers = Printer::all();
-        return view('request.details_Request',compact('request', 'printers'));
+        $comments = Comment::where("request_id", 'id');
+        return view('request.details_Request',compact('request', 'printers', 'comments'));
     }
 
     public function edit(Pedido $requests)
@@ -145,5 +147,7 @@ class RequestController extends Controller
         $request->save();
         return redirect()->route('requests.showRequest',$request);
     }
+
+
 
 }
