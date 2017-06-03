@@ -59,11 +59,12 @@ class UserController extends Controller
         return view('users.listUsers', compact('users', 'departments'));
     }
 
-    public function groupDepartment()
+    public function groupDepartment(Department $departments)
     {
-        $users = User::groupBy('department_id')->paginate(20);
+        
+        $users = User::where("department_id", $departments->id)->paginate(20);
         $departments = Department::all();
-        return view('users.listUsers', compact('users', 'departments'));
+        return redirect()->route('users.showUsers', compact('users', 'departments'));
     }
 
     public function block(User $user)

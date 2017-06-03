@@ -110,25 +110,25 @@ class RequestController extends Controller
 
     public function orderName()
     {
-        $requests = Pedido::orderBy('owner_id->name', 'asc')->paginate(20);
+        $requests = Pedido::orderBy('name', 'asc')->paginate(20);
         $departments = Department::all();
         return view('request.resquestList', compact('departments', 'requests'));
     }
 
     public function orderDepartment()
     {
-        $requests = Pedido::orderBy('owner_id->department_id', 'asc')->paginate(20);
+        $requests = Pedido::orderBy('department_id', 'asc')->paginate(20);
         $departments = Department::all();
-        return view('request.resquestList', compact('user', 'departments', 'requests'));
+        return view('request.resquestList', compact('departments', 'requests'));
     }
 
-    public function groupDepartment()
+    public function groupDepartment(Department $departments)
     {
-        $users = User::groupBy('department_id')->paginate(20);
+        dd($departments->id);
+        $users = User::where("department_id", $departments->id)->paginate(20);
         $departments = Department::all();
-        return view('request.resquestList', compact('users', 'departments'));
+        return view('request.resquestList', compact('users', 'departments', 'requests'));
     }
-
 
     public function concluirPedido(Pedido $request, Request $req)
     {
