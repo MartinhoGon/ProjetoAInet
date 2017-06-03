@@ -32,7 +32,7 @@ Route::get('/show-requests/{request}', 'RequestController@showRequest')->name('r
 
 Route::post('requests/{request}/concluirAvaliacao', 'RequestController@concluirAvaliacao')->name('requests.concluirAvaliacao')->middleware('checkedAdmin');
 
-Route::get('/show-requests/{request}/downloadFile', 'RequestController@downloadFile')->name('requests.downloadFile')->middleware('checkedAdmin');
+Route::get('/show-requests/{request}/downloadFile', 'RequestController@downloadFile')->name('requests.downloadFile');//->middleware('checkedAdmin');
 
 
 //-----------users----------------

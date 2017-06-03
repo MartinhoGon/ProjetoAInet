@@ -84,8 +84,8 @@ class RequestController extends Controller
 
     public function saveFile($request, $requests)
     {
-        $name = $request->owner_id."-".time()."-ficheiro";
-        $filepath = "print-jobs/$request->owner_id";
+        $name = $request->owner_id."-".time().".".$requests->file->getClientOriginalExtension();
+        $filepath = 'print-jobs'.DIRECTORY_SEPARATOR.'$request->owner_id';
 
         $requests->file->storeAs($filepath, $name, 'local');
         return $name;
