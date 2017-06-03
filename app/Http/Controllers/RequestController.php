@@ -12,6 +12,7 @@ use App\Policies\RequestPolicy;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
 use Auth;
+use Storage;
 
 class RequestController extends Controller
 {
@@ -86,6 +87,7 @@ class RequestController extends Controller
     {
         $name = $request->owner_id."-".time().".".$requests->file->getClientOriginalExtension();
         $filepath = 'print-jobs'.DIRECTORY_SEPARATOR."$request->owner_id";
+
         $requests->file->storeAs($filepath, $name, 'local');
         return $name;
     }
@@ -93,7 +95,7 @@ class RequestController extends Controller
     public function downloadFile(Pedido $request)
     {
         $filename = $request->file;
-        return response()->download(storage_path("print-jobs/$request->owner_id/{$filename}"));
+        return response()->download(storage_path('app/print-jobs/'.$request->owner_id.'/'.$filename));
     }
     
     public function destroy(Request $request)

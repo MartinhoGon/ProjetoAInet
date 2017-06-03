@@ -96,16 +96,16 @@
    @endif
  @endif
  @else
- <text> Já foi avaliado em {{$request->satisfaction_grade}} numa escala de 1 a 3. </text>
+ <text> Já foi avaliado em {{$request->satisfaction_grade}} numa escala de 1 a 3. <br><br></text>
  @endif
 
+<label> Commentários:</label>
 
 @if(Auth::user()) <!--so users autenticados é que podem comentar. -->
   @if($request->status == 0)  <!--o pedido tem de estar pendente para se poder comentar -->
   <form action="{{route('comments.concluirComentario', $request, $comments)}}" method="post" class="form-group">
   {{csrf_field()}}
         <div class="form-group">
-              
               <input
                   type="text" class="form-control"
                   name="comment" id="inputComment"
@@ -118,9 +118,9 @@
    @endif
  @endif
 
-<label for="inputComment">Commentários:</label>
 <table class="table table-striped letra">
   <thead>
+
       <tr>
           <th></th>
           <th>Autor</th>
@@ -132,9 +132,9 @@
       <tr>
           <td></td>
           @foreach ($comments as $comment)
-            <td> </td>
-            <td>{{$comment->comment}}</td>   
-            <td>{{$comment->created_at}}</td>      
+            <td>$comment -> user_id </td>
+            <td>$comment->comment</td>   
+            <td>$comment->created_at</td>      
         @endforeach
       </tr>
  </tbody> 
