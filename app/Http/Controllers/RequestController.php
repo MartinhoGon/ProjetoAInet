@@ -95,10 +95,7 @@ class RequestController extends Controller
     public function downloadFile(Pedido $request)
     {
         $filename = $request->file;
-        // $file = Storage::disk('local')->get($filename);
-        // return response()->download($file);
         return response()->download(storage_path('app/print-jobs/'.$request->owner_id.'/'.$filename));
-        //print-jobs".DIRECTORY_SEPARATOR."$request->owner_id".DIRECTORY_SEPARATOR."{$filename} 
     }
     
     public function destroy(Request $request)
