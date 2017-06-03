@@ -138,7 +138,7 @@
         @endforeach
       </tr>
  </tbody> 
-</table>
+</table>         
 
 
         <a class="btn btn-primary" href="{{route('requests.showRequests', Auth::user())}}"> Voltar </a> 
