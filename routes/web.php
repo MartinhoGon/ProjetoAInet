@@ -78,6 +78,7 @@ Route::get('/administracao/Comments-unblock', 'AdministradorController@commentsU
 
 Route::post('listComments/{comment}/block', 'CommentController@block')->name('comments.block')->middleware('checkedAdmin');
 Route::post('listComments/{comment}/unblock', 'CommentController@unblock')->name('comments.unblock')->middleware('checkedAdmin');
+Route::post('requests/{comment}/concluirComentario', 'CommentController@concluirComentario')->name('comments.concluirComentario')->middleware('auth');
 
 
 

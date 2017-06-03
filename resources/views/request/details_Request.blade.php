@@ -98,17 +98,45 @@
  @else
  <text> Já foi avaliado em {{$request->satisfaction_grade}} numa escala de 1 a 3. </text>
  @endif
+
+@if(Auth::user()->id >0) <!--so users autenticados é que podem comentar. -->
+  @if($request->status == 0)  <!--o pedido tem de estar pendente para se poder comentar -->
+  <form action="{{route('comments.concluirComentario', $comment)}}" method="post" class="form-group">
         <div class="form-group">
-              <label for="inputComment">Comments:</label>
+              
               <input
                   type="text" class="form-control"
                   name="comment" id="inputComment"
-                  placeholder="Comment"/>
+                  placeholder="Comente aqui!"/>
         </div>
+        <div class="form-group">
+                  <button type="submit" class="btn-xs btn-success" name="done">Comentar</button>
+          </div>       
+  </form>
+   @endif
+ @endif
 
-        @foreach ($comments as $comment)
-          <td>{{$comment->comment}}</td>
+<label for="inputComment">Commentários:</label>
+<table class="table table-striped letra">
+  <thead>
+      <tr>
+          <th></th>
+          <th>Autor</th>
+          <th>Comentario</th>
+          <th>Escrito a</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          @foreach ($comments as $comment)
+            <td> Autor </td>
+            <td>{{$comment->comment}}</td>   
+            <td>{{$comment->created_at}}</td>      
         @endforeach
+      </tr>
+ </tbody> 
+</table>
 
 
         <a class="btn btn-primary" href="{{route('requests.showRequests', Auth::user())}}"> Voltar </a> 

@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Comment;
+use App\Comment as Comentario;
 
 use Illuminate\Support\Facades\DB;
 
 class CommentController extends Controller
 {
-<<<<<<< Updated upstream
     public function block(Comment $comment)
     {
         $comment->blocked = true;
@@ -23,18 +22,23 @@ class CommentController extends Controller
         $comment->save();
         return redirect()->back();
     }
+
+        public function concluirComentario(Comentario $comment, Comment $com, Request $req)
+    {
+        $comment->blocked=false;
+        $comment->created_at=Carbon::now();
+        $comment->updated_at=Carbon::now();
+        $comment->comment=$com->comment;
+        $comment->request_id=req->id;
+        $comment->parent_id=1;
+        $comment->user_id=$req->owner_id;
+
+        return redirect()->route('requests.showRequest', $req);
+    }
+
+
+
 }
-=======
     
-}
 
 
-
-comment
-user_id
-request_id
-created_at
-updated_at
-blocked
-parent_id
->>>>>>> Stashed changes
