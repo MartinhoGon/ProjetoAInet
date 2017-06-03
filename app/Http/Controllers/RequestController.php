@@ -25,15 +25,17 @@ class RequestController extends Controller
             $requests = Pedido::where("owner_id", $user->id)->paginate(20);
         }
         $departments = Department::all();
+        
 
         return view('request.resquestList', compact('requests', 'departments'));
     }
 
 
-    public function showRequest(Pedido $request)
+    public function showRequest(Pedido $request, User $user)
     {
+        $comments= Comment::where("request_id", $request->id);
+        //dd($comments);
         $printers = Printer::all();
-        $comments = Comment::where("request_id", 'id');
         return view('request.details_Request', compact('request', 'printers', 'comments'));
     }
 
