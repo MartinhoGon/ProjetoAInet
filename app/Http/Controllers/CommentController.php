@@ -23,7 +23,7 @@ class CommentController extends Controller
         return redirect()->back();
     }
 
-        public function concluirComentario(Comment $comment, Comment $com, Request $req)
+        public function concluirComentario(Commment $comment, Comment $com, Request $req)
     {
         $comment->blocked=false;
         $comment->created_at=Carbon::now();
@@ -33,7 +33,7 @@ class CommentController extends Controller
         $comment->parent_id=1;
         $comment->user_id=$req->owner_id;
 
-        return redirect()->route('requests.showRequest', $req, $comment);
+        return redirect()->route('requests.showRequest', $req);
     }
 
 
