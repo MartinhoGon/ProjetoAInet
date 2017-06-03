@@ -25,14 +25,14 @@ class UpdatePedidoRequest extends FormRequest
     {
         return [
             'quantity' => 'required|alpha_num',
-            'paper_size' => 'required|between:3,4',
+            'paper_size' => 'required',
             'paper_type' => 'required|between:0,2',
             'file' => 'required|file',
             'colored' => 'required|between:0,1',
             'stapled' => 'required|between:0,1',
             'front_back' => 'required|between:0,1',
             //'description' => 'alpha_dash',
-            'due_date' => 'required|date'
+            //'due_date' => 'required|date'
         ];
     }
 }

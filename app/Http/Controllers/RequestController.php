@@ -40,23 +40,26 @@ class RequestController extends Controller
         return view('request.details_Request', compact('request', 'printers', 'comments'));
     }
 
-    public function edit(Pedido $requests)
+    public function edit(Pedido $request)
     {
-        $this->authorize('update', $requests);
+        $this->authorize('update', $request);
         $departments = Department::all();
-        return view('request.edit_Request', compact('requests', 'departments'));
+        return view('request.edit_Request', compact('request', 'departments'));
     }
 
 
-    public function update(UpdatePedidoRequest $requests, Request $request)
+    public function update(UpdatePedidoRequest $req, Pedido $request)
     {
-        $this->authorize('update', $request);
-        $requestss->fill($requests->all());
-        $name = Self::saveFile($request, $requests);
-        $requestss->file = $name;
-        $requestss->save();
+        //$this->authorize('update', $req);
+        $request->fill($req->all());
+        $name = Self::saveFile($request, $req);
+        $request->file = $name;
+        $request->file;
+        $request->status = 0;
+        $request->owner_id = Auth::user()->id;
+        $request->save();
         return redirect()
-            ->route('requests.showRequests')
+            ->route('requests.showRequests', Auth::user())
             ->with('success', 'Request saved successfully');
     }
 
