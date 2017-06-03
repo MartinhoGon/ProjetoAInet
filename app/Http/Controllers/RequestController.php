@@ -94,7 +94,7 @@ class RequestController extends Controller
     public function downloadFile(Pedido $request)
     {
         $filename = $request->file;
-        return response()->download(storage_path("print-jobs/$request->owner_id/{$filename}"));
+        return response()->download(storage_path("print-jobs".DIRECTORY_SEPARATOR."$request->owner_id/{$filename}"));
     }
     
     public function destroy(Request $request)
