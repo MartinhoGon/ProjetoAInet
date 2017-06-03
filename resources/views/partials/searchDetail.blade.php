@@ -32,10 +32,17 @@
 			</div>
 		</td>
 		<td>
-			<form class="form-search pull-right">
-			    <input type="text" class="input-medium search-query">
-			    <button type="submit" class="btn letra">Search</button>
-			</form>	
+			<form action="/search" method="POST" role="search">
+    		{{ csrf_field() }}
+    			<div class="input-group">
+        			<input type="text" class="form-control" name="q"
+            		placeholder="Search users"> <span class="input-group-btn">
+            	<button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </span>
+    </div>
+</form>
 		</td>
 	</tr>
 </table>

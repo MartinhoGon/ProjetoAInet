@@ -11,7 +11,6 @@
         <tr>
             <th>id</th>
             <th>Comentario</th>
-            <th>Bloqueado</th>
             <th>Request Id</th>
             <th>Utilizador</th>
         </tr>
@@ -21,7 +20,6 @@
         <tr>
             <td>{{$comment->id}}</td>
             <td>{{$comment->comment}}</td>
-            <td>{{$comment->blocked}}</td>
             <td>{{$comment->request_id}}</td>
             <td>{{$comment->user->name}}</td>
             <td>
