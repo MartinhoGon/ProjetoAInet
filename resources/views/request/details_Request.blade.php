@@ -100,7 +100,7 @@
  @endif
 
 
-@if(Auth::user()->id >0) <!--so users autenticados é que podem comentar. -->
+@if(Auth::user()) <!--so users autenticados é que podem comentar. -->
   @if($request->status == 0)  <!--o pedido tem de estar pendente para se poder comentar -->
   <form action="{{route('comments.concluirComentario', $request, $comments)}}" method="post" class="form-group">
   {{csrf_field()}}

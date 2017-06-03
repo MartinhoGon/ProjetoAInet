@@ -121,9 +121,9 @@ class RequestController extends Controller
         return view('request.resquestList', compact('departments', 'requests'));
     }
 
-    public function groupDepartment(Department $departments)
+    public function groupDepartment(Department $departments, Request $request)
     {
-        dd($departments->id);
+        //dd($request['department_id']);
         $users = User::where("department_id", $departments->id)->paginate(20);
         $departments = Department::all();
         return view('request.resquestList', compact('users', 'departments', 'requests'));

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Request as Pedido;
 
 class CommentController extends Controller
 {
@@ -23,17 +25,18 @@ class CommentController extends Controller
         return redirect()->back();
     }
 
-        public function concluirComentario(Comment $comment, Comment $com, Request $req)
+        public function concluirComentario(Comment $comment, Request $req, Pedido $request)
     {
         $comment->blocked=false;
         $comment->created_at=Carbon::now();
         $comment->updated_at=Carbon::now();
-        $comment->comment=$com->comment;
+        $comment->comment=$comment->comment;
         $comment->request_id=$req->id;
         $comment->parent_id=1;
         $comment->user_id=$req->owner_id;
+        $comment->save();
 
-        return redirect()->route('requests.showRequest', $req, $comment);
+        return redirect()->route('requests.showRequest', $comment, $request);
     }
 
 
