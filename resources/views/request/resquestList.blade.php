@@ -38,10 +38,10 @@
             <a class="btn" href="{{route('requests.showRequest', $request)}}"> Ver detalhes</a> 
             @if($request->status == 0)
                 @can('update', $request)
-                    {{-- <a class="btn btn-xs btn-primary" href="{{route('requests.edit', [$request, Auth::user()])}}">Edit</a>
-                @endcan --}}
-                    <a class="btn btn-xs btn-primary" href="{{route('requests.edit', $request)}}">Edit</a>
-                @endcan
+                    <a class="btn btn-xs btn-primary" href="{{route('requests.edit', [$request, Auth::user()])}}">Edit</a>
+                @endcan 
+                    {{--<a class="btn btn-xs btn-primary" href="{{route('requests.edit', $request)}}">Edit</a>
+                @endcan--}}
                 @can('delete', $request)
                     <form action="{{route('requests.destroy', $request)}}" method="POST" role="form" class="inline">
                         {{method_field('delete')}}

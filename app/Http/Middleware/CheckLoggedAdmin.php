@@ -20,9 +20,8 @@ class CheckLoggedAdmin
             return redirect('login');
         }
         if (!Auth::user()->isAdmin()) {
-                return redirect('login');
+            return redirect('login');
         }
         return $next($request);
     }
 }
- 

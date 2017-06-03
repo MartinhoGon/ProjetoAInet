@@ -7,13 +7,10 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
-
-	use HandlesAuthorization;
+    use HandlesAuthorization;
    
     public function update(User $authUser, User $user)
     {
         return $authUser->id == $user->id;
     }
-
-    
 }

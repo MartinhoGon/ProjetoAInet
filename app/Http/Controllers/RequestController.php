@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Request as Pedido; 
+use App\Request as Pedido;
 use Illuminate\Http\Request;
 use App\Department;
 use App\User;
@@ -13,22 +13,20 @@ use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
 use Auth;
 
-
 class RequestController extends Controller
 {
-
     protected $fillable = ['description','quantity'];
 
     public function showRequests(User $user)
-    {  
+    {
         if ($user->isAdmin()) {
             $requests = Pedido::paginate(20);
         } else {
-            $requests = Pedido::where("owner_id",$user->id)->paginate(20);
-        }      
-        $departments = Department::all();        
+            $requests = Pedido::where("owner_id", $user->id)->paginate(20);
+        }
+        $departments = Department::all();
 
-        return view('request.resquestList',compact('requests', 'departments'));
+        return view('request.resquestList', compact('requests', 'departments'));
     }
 
 
@@ -36,7 +34,7 @@ class RequestController extends Controller
     {
         $printers = Printer::all();
         $comments = Comment::where("request_id", 'id');
-        return view('request.details_Request',compact('request', 'printers', 'comments'));
+        return view('request.details_Request', compact('request', 'printers', 'comments'));
     }
 
     public function edit(Pedido $requests)
@@ -72,7 +70,7 @@ class RequestController extends Controller
         $request->owner_id = Auth::user()->id;
         $request->status = 0;
         $request->fill($requests->all());
-        $name = Self::saveFile($request,$requests);
+        $name = Self::saveFile($request, $requests);
         $request->file = $name;
         $request->save();
         return redirect()
@@ -85,7 +83,7 @@ class RequestController extends Controller
         $name = $request->owner_id."-".time()."-ficheiro";
         $filepath = "print-jobs/$request->owner_id";
 
-        $requests->file->storeAs($filepath,$name,'local');
+        $requests->file->storeAs($filepath, $name, 'local');
         return $name;
     }
 
@@ -110,22 +108,21 @@ class RequestController extends Controller
     {
         $requests = Pedido::orderBy('owner_id->name', 'asc')->paginate(20);
         $departments = Department::all();
-        return view('request.resquestList',compact('departments', 'requests'));
+        return view('request.resquestList', compact('departments', 'requests'));
     }
 
     public function orderDepartment()
     {
         $requests = Pedido::orderBy('owner_id->department_id', 'asc')->paginate(20);
         $departments = Department::all();
-        return view('request.resquestList',compact('user', 'departments', 'requests'));
-
+        return view('request.resquestList', compact('user', 'departments', 'requests'));
     }
 
     public function groupDepartment()
     {
         $users = User::groupBy('department_id')->paginate(20);
         $departments = Department::all();
-        return view('request.resquestList',compact('users', 'departments'));
+        return view('request.resquestList', compact('users', 'departments'));
     }
 
 
@@ -134,7 +131,7 @@ class RequestController extends Controller
         $request->status = 1;
         $request->printer_id = $req->printer_id;
         $request->save();
-        return redirect()->route('requests.showRequest',$request);
+        return redirect()->route('requests.showRequest', $request);
     }
 
     public function recusarPedido(Pedido $request, Request $req)
@@ -142,16 +139,13 @@ class RequestController extends Controller
         $request->status = 2;
         $request->refused_reason = $req->refused_reason;
         $request->save();
-        return redirect()->route('requests.showRequest' , $request);
+        return redirect()->route('requests.showRequest', $request);
     }
 
     public function concluirAvaliacao(Pedido $request, Request $req)
     {
         $request->satisfaction_grade = $req->satisfaction_grade;
         $request->save();
-        return redirect()->route('requests.showRequest',$request);
+        return redirect()->route('requests.showRequest', $request);
     }
-
-
-
 }

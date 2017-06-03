@@ -60,8 +60,8 @@ Route::get('/department', 'DepartmentController@showDepartments')->name('departm
 
 
 //----------Statistics home-------------
-Route::post('/home','StatisticsRequestsController@showStatistics') ->name('home');
-Route::get('/home','StatisticsRequestsController@showStatistics') ->name('home');
+Route::post('/home', 'StatisticsRequestsController@showStatistics') ->name('home');
+Route::get('/home', 'StatisticsRequestsController@showStatistics') ->name('home');
 
 
 
@@ -71,7 +71,13 @@ Route::get('/administracao/Users-block', 'AdministradorController@usersBlock')->
 Route::get('/administracao/Users-unblock', 'AdministradorController@usersUnblock')->name('users.usersUnblock')->middleware('checkedAdmin');;
 Route::get('/administracao/Pedidos', 'AdministradorController@pedidos')->name('requests.pedidos')->middleware('checkedAdmin');;
 Route::get('/administracao/Comments-block', 'AdministradorController@commentsBlock')->name('comments.commentsBlock')->middleware('checkedAdmin');;
-Route::get('/administracao/Comments-unblock', 'AdministradorController@commentsUnblock')->name('comments.commentsUnblock')->middleware('checkedAdmin');; 
+Route::get('/administracao/Comments-unblock', 'AdministradorController@commentsUnblock')->name('comments.commentsUnblock')->middleware('checkedAdmin');;
+
+
+//------------comments-----------------------------------------
+
+Route::post('listComments/{comment}/block', 'CommentController@block')->name('comments.block');
+Route::post('listComments/{comment}/unblock', 'CommentController@unblock')->name('comments.unblock');
 
 
 
@@ -84,4 +90,3 @@ Route::post('/create', 'Auth\RegisterController@create')->name('create');
 Route::get('/', function () {
     return redirect()->route('home');
 });
-

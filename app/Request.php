@@ -6,25 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Request extends Model
 {
-    
     protected $fillable = [
         'quantity', 'paper_size', 'paper_type', 'colored', 'stapled', 'front_back', 'description'
     ];
 
-	//Establecer relações com a BD
-    public function user() 
+    //Establecer relações com a BD
+    public function user()
     {
-    	return $this->belongsTo('App\User','owner_id', 'id');
+        return $this->belongsTo('App\User', 'owner_id', 'id');
     }
 
-    public function comment() 
+    public function comment()
     {
-    	return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment');
     }
 
-    public function printer() 
+    public function printer()
     {
-    	return $this->hasOne('App\Printer');
+        return $this->hasOne('App\Printer');
     }
 
     //---------------------------------------
@@ -104,6 +103,4 @@ class Request extends Model
 
         return 'Unknown';
     }
-
-
 }

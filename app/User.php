@@ -11,20 +11,20 @@ class User extends Authenticatable
         'name', 'email', 'password', 'department_id', 'activated'
     ];
     
-	//estabelcer as relações com a BD
-    public function requests() 
+    //estabelcer as relações com a BD
+    public function requests()
     {
-    	return $this->hasMany('App\Requests','owner_id','id');
+        return $this->hasMany('App\Requests', 'owner_id', 'id');
     }
 
-    public function comment() 
+    public function comment()
     {
-    	return $this->hasMany('App\Comment','user_id','id');
+        return $this->hasMany('App\Comment', 'user_id', 'id');
     }
 
-    public function department() 
+    public function department()
     {
-    	return $this->belongsTo( 'App\Department' , 'department_id', 'id');
+        return $this->belongsTo('App\Department', 'department_id', 'id');
     }
 
     public function isAdmin()
@@ -41,5 +41,4 @@ class User extends Authenticatable
     {
         return (int) $this->blocked === 0;
     }
-
 }

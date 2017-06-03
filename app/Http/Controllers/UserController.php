@@ -11,15 +11,14 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-
     protected $fillable = ['name','email', 'password','department_id', 'phone', 'presentation', 'profile_url'];
 
     public function showUsers()
     {
         $users = User::paginate(20);
-    	
-    	$departments = Department::all();
-    	return view('users.listUsers',compact('users', 'departments'));
+        
+        $departments = Department::all();
+        return view('users.listUsers', compact('users', 'departments'));
     }
 
     public function showUserPerfil(User $user)
@@ -50,27 +49,25 @@ class UserController extends Controller
     {
         $users = User::orderBy('name', 'asc')->paginate(20);
         $departments = Department::all();
-        return view('users.listUsers',compact('users', 'departments'));
+        return view('users.listUsers', compact('users', 'departments'));
     }
 
     public function orderDepartment()
     {
         $users = User::orderBy('department_id', 'asc')->paginate(20);
         $departments = Department::all();
-        return view('users.listUsers',compact('users', 'departments'));
-
-
+        return view('users.listUsers', compact('users', 'departments'));
     }
 
     public function groupDepartment()
     {
         $users = User::groupBy('department_id')->paginate(20);
         $departments = Department::all();
-        return view('users.listUsers',compact('users', 'departments'));
+        return view('users.listUsers', compact('users', 'departments'));
     }
 
     public function block(User $user)
-    {     
+    {
         $user->blocked = true;
         $user->save();
         return redirect()->back();
@@ -96,5 +93,4 @@ class UserController extends Controller
         $user->save();
         return redirect()->back();
     }
-
 }

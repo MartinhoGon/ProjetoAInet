@@ -24,6 +24,26 @@
             <td>{{$comment->blocked}}</td>
             <td>{{$comment->request_id}}</td>
             <td>{{$comment->user->name}}</td>
+            <td>
+            @if(Auth::check() && Auth::user()->isAdmin())
+                @if($comment->blocked == true)
+                    <form action="{{route('comments.unblock', $comment)}}" method="post" class="form-group">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                                <button type="submit" class="btn-xs btn-success" name="ok">Unblock</button>
+                        </div>
+                    </form>
+                @else
+                    <form action="{{route('comments.block', $comment)}}" method="post" class="form-group">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                                <button type="submit" class="btn-xs btn-danger" name="ok">Block</button>
+                        </div>
+                    </form>
+                @endif
+                
+            @endif
+            </td>
         </tr>
         @endforeach
 </table>

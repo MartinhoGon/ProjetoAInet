@@ -67,8 +67,6 @@ class RegisterController extends Controller
      */
     public function create(Request $data)
     {
-        
-      
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -88,7 +86,7 @@ class RegisterController extends Controller
         $input = $request->all();
         $validator = $this->validator($input);
 
-        if($validator->passes()){
+        if ($validator->passes()) {
             $data = $this->create($input)->toArray();
 
             $data['remember_token'] = str_random(25);
@@ -97,7 +95,7 @@ class RegisterController extends Controller
             $user->remember_token = $data['remember_token'];
             $user->save();
 
-            Mail::send('mails.confirmation', $data, function($message) use($data){
+            Mail::send('mails.confirmation', $data, function ($message) use ($data) {
                 $message->to($data['email']);
                 $message->subject('Registration Confirmation');
             });
@@ -110,7 +108,7 @@ class RegisterController extends Controller
     {
         $user = User::where('remember_token', $remember_token)->first();
 
-        if(!is_null($user)){
+        if (!is_null($user)) {
             $user->activated = 1;
             $user->remember_token = '';
             $user->save();
@@ -118,9 +116,4 @@ class RegisterController extends Controller
         }
         return redirect(route('login'))->with('status', 'Something went wrong.');
     }
-
-
-    
-
-
 }

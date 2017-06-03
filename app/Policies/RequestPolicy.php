@@ -9,8 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RequestPolicy
 {
-
-	use HandlesAuthorization;
+    use HandlesAuthorization;
    
 
     public function create(User $authUser)
@@ -20,18 +19,16 @@ class RequestPolicy
 
     public function update(User $authUser, Request $request)
     {
-        
         return $authUser->isAdmin() || $authUser->id == $request->owner_id;
     }
 
-    public function canEvaluate (User $authUser, Request $request) //concluido e o pedido é dele próprio
+    public function canEvaluate(User $authUser, Request $request) //concluido e o pedido é dele próprio
     {
         return $request->status == 1 &&  $authUser->id == $request->owner_id;
     }
 
-    public function delete (User $authUser, Request $request)
+    public function delete(User $authUser, Request $request)
     {
         return $authUser->isAdmin() || $authUser->id == $request->owner_id;
     }
-
 }

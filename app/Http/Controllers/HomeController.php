@@ -25,6 +25,6 @@ class HomeController extends Controller
     public function index()
     {
         $departments = Department::all();
-        return view('home',compact('departments'));
+        return view('home', compact('departments'));
     }
 }
