@@ -9,8 +9,9 @@
 			        <ul class="dropdown-menu">
 			            <li>
 			           		@foreach ($departments as $dep)
-            					<a href="{{route('requests.groupDepartment')}}" <option value=" {{$dep->id}}"> {{$dep->name}} </option></a>
+            					<a href="{{route('requests.groupDepartment')}}" <option name="department_id" value=" {{$dep->id}}"> {{$dep->name}} </option></a>
              				@endforeach
+                            
 			            </li>
 			        </ul>
 			</div>

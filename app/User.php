@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return (int) $this->blocked === 0;
     }
+
+    public function unblocked()
+    {
+        return (int) $this->blocked === 1;
+    }
 }

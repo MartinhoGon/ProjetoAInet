@@ -85,12 +85,8 @@ class RequestController extends Controller
     public function saveFile($request, $requests)
     {
         $name = $request->owner_id."-".time().".".$requests->file->getClientOriginalExtension();
-<<<<<<< HEAD
         $filepath = 'print-jobs'.DIRECTORY_SEPARATOR.'$requests->owner_id';
 
-=======
-        $filepath = 'print-jobs'.DIRECTORY_SEPARATOR."$request->owner_id";
->>>>>>> 675d0f228cee6f813bcb8201a6191a0af5e10a6f
         $requests->file->storeAs($filepath, $name, 'local');
         return $name;
     }
@@ -114,25 +110,25 @@ class RequestController extends Controller
 
     public function orderName()
     {
-        $requests = Pedido::orderBy('name', 'asc')->paginate(20);
+        $requests = Pedido::orderBy('owner_id->name', 'asc')->paginate(20);
         $departments = Department::all();
         return view('request.resquestList', compact('departments', 'requests'));
     }
 
     public function orderDepartment()
     {
-        $requests = Pedido::orderBy('department_id', 'asc')->paginate(20);
+        $requests = Pedido::orderBy('owner_id->department_id', 'asc')->paginate(20);
         $departments = Department::all();
-        return view('request.resquestList', compact('departments', 'requests'));
+        return view('request.resquestList', compact('user', 'departments', 'requests'));
     }
 
-    public function groupDepartment(Department $departments)
+    public function groupDepartment()
     {
-        dd($departments->id);
-        $users = User::where("department_id", $departments->id)->paginate(20);
+        $users = User::groupBy('department_id')->paginate(20);
         $departments = Department::all();
-        return view('request.resquestList', compact('users', 'departments', 'requests'));
+        return view('request.resquestList', compact('users', 'departments'));
     }
+
 
     public function concluirPedido(Pedido $request, Request $req)
     {

@@ -33,7 +33,7 @@ class CommentController extends Controller
         $comment->parent_id=1;
         $comment->user_id=$req->owner_id;
 
-        return redirect()->route('requests.showRequest', $request, $comment);
+        return redirect()->route('requests.showRequest', $req, $comment);
     }
 
 
