@@ -91,7 +91,7 @@ class RegisterController extends Controller
 
             $data['remember_token'] = str_random(25);
 
-            $user = User::find($data[$id]);
+            $user = User::find($data['id']);
             $user->remember_token = $data['remember_token'];
             $user->save();
 
@@ -99,9 +99,9 @@ class RegisterController extends Controller
                 $message->to($data['email']);
                 $message->subject('Registration Confirmation');
             });
-            return redirect(route('login'))->with('status', 'Confirmation email has been send. Please check your email.');
+            return redirect(route('login'))->with('activated', 'Confirmation email has been send. Please check your email.');
         }
-        return redirect(route('login'))->with('status', $validator->errors);
+        return redirect(route('login'))->with('errors', $validator->errors);
     }
 
     public function confirmation($remember_token)
@@ -112,8 +112,8 @@ class RegisterController extends Controller
             $user->activated = 1;
             $user->remember_token = '';
             $user->save();
-            return redirect(route('login'))->with('status', 'Your activation is completed.');
+            return redirect(route('login'))->with('activated', 'Your activation is completed.');
         }
-        return redirect(route('login'))->with('status', 'Something went wrong.');
+        return redirect(route('login'))->with('activated', 'Something went wrong.');
     }
 }
