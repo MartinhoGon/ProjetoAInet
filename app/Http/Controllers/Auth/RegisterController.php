@@ -81,16 +81,16 @@ class RegisterController extends Controller
             ->route('register');
     }
 
+
+
     protected function register(Request $request)
     {
         $input = $request->all();
-        $validator = $this->validator($input);
+        $validator=$this->validator($input);
 
         if ($validator->passes()) {
             $data = $this->create($input)->toArray();
-
             $data['remember_token'] = str_random(25);
-
             $user = User::find($data['id']);
             $user->remember_token = $data['remember_token'];
             $user->save();
@@ -99,21 +99,22 @@ class RegisterController extends Controller
                 $message->to($data['email']);
                 $message->subject('Registration Confirmation');
             });
-            return redirect(route('login'))->with('activated', 'Confirmation email has been send. Please check your email.');
+            return redirect(route('login'))->with('activated', 'Confirmation email has been send, please check your email.');
         }
-        return redirect(route('login'))->with('errors', $validator->errors);
+        return redirect(route('register'))->with('errors', $validator->errors());
     }
 
     public function confirmation($remember_token)
     {
-        $user = User::where('remember_token', $remember_token)->first();
+        $user = User::Where('remember_token', $remember_token)->first();
 
         if (!is_null($user)) {
             $user->activated = 1;
             $user->remember_token = '';
             $user->save();
-            return redirect(route('login'))->with('activated', 'Your activation is completed.');
+            return redirect(route('login'))->with('activated', 'Your activation is completed');
         }
-        return redirect(route('login'))->with('activated', 'Something went wrong.');
+        return redirect(route('login'))->with('activated', 'Something went wrong');
     }
+
 }

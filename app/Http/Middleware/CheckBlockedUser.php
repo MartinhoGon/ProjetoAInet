@@ -10,7 +10,7 @@ class CheckBlockedUser
     
     public function handle($request, Closure $next)
     {
-        if (!Auth::user()->unblocked()) {
+        if (!Auth::user()->blocked()) {
             return redirect('login');
         }
         return $next($request);
