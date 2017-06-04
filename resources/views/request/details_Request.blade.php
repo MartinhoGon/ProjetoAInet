@@ -132,9 +132,11 @@
       <tr>
           <td></td>
           @foreach ($comments as $comment)
-            <td>$comment -> user_id </td>
+             @if($comment->blocked == false)
+            <td>{{$comment->user->name}} </td>
             <td>$comment->comment</td>   
-            <td>$comment->created_at</td>      
+            <td>$comment->created_at</td>  
+            @endif    
         @endforeach
       </tr>
  </tbody> 
